@@ -1,0 +1,108 @@
+---
+const { 
+  title = "", 
+  variant = "dark", 
+  animation = 'ltr',
+  delay = 0,
+  align = 'center',
+  duration = 0.8,
+  sx,
+  class: className = ""
+} = Astro.props;
+
+// Animation offsets
+const xOffset = animation === 'ltr' ? '-50px' : '0';
+const yOffset = animation === 'ltr' ? '0' : '50px';
+
+---
+
+<h2 
+  class={`reveal-heading h4 title title-${variant} ${className} title-${align}`} 
+  style={{ 
+    '--x-offset': xOffset, 
+    '--y-offset': yOffset,
+    '--delay': `${delay}s`,
+    '--duration': `${duration}s`,
+    ...sx
+  }}
+>
+  {title}
+</h2>
+
+<style>
+  .reveal-heading {
+    /* Layout */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: var(--align-items);
+    width: min(100%, 750px);
+    
+    /* Typography */
+    font-family: var(--font-family);
+    margin: 0;
+    line-height: 1.2;
+
+    /* Animation Initial State */
+    opacity: 0;
+    transform: translate(var(--x-offset), var(--y-offset));
+    transition:
+      opacity var(--duration) ease-out,
+      transform var(--duration) cubic-bezier(0.17, 0.55, 0.55, 1);
+    transition-delay: var(--delay);
+    will-change: opacity, transform;
+  }
+
+  /* Active State */
+  .reveal-heading.active {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  .title{
+    position: relative;
+    font-weight: 500;
+  
+   
+}
+  /* Theming */
+  .title-dark { color: var(--secondary-dark-1); }
+  .title-light { color: #fff; }
+
+  .title:after{
+    content: "";
+   position: absolute;
+    width: 50%;
+    height: 3px;
+    background-color: var(--primary-main-1);
+    bottom: -.5rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+.title-left{
+  text-align: left;
+}
+.title-center{
+  text-align: center;
+}
+.title-right{
+  text-align: right;
+ 
+}
+</style>
+
+<script>
+  function initReveal() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll(".reveal-heading").forEach((el) => observer.observe(el));
+  }
+
+  initReveal();
+  document.addEventListener('astro:after-swap', initReveal);
+</script>

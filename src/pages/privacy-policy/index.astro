@@ -1,0 +1,93 @@
+---
+import LayoutMain from "@/src/layouts/LayoutMain.astro";
+import { getBusinessData } from "@/src/keystatic/getBusinessData";
+const business = await getBusinessData() ?? {};
+const {businessName = 'GOK Studio', address = '', email = '', phone = ''} = business;
+
+
+const lastUpdated = "07.01.2026";
+---
+
+<LayoutMain title="Политика за поверителност" description="Как защитаваме Вашите лични данни">
+  <section class="policy-wrapper" slot="main">
+    <div class="content-container">
+      <h1>Политика за поверителност</h1>
+      
+      <p class="subtitle">
+        Последна промяна: <strong>{lastUpdated}</strong>
+      </p>
+
+      <section class="policy-section">
+        <h2>1. Обща информация</h2>
+        <p>
+          Вашата поверителност е изключително важна за нас. Тази политика обяснява как събираме и обработваме информацията, която предоставяте чрез контактните форми на този уебсайт.
+        </p>
+      </section>
+
+      <section class="policy-section">
+        <h2>2. Данни, които събираме</h2>
+        <p>Когато използвате нашата форма за контакт, ние събираме следните лични данни:</p>
+        <ul>
+          <li>Име и фамилия</li>
+          <li>Електронен адрес (имейл)</li>
+          <li>Телефонен номер (ако е предоставен)</li>
+          <li>Текст на Вашето съобщение</li>
+        </ul>
+      </section>
+
+      <section class="policy-section">
+        <h2>3. Цел на обработката</h2>
+        <p>
+          Предоставените данни се използват единствено за целите на комуникацията с Вас – отговор на Вашите запитвания, записване на часове или предоставяне на информация относно нашите услуги. 
+        </p>
+        <!-- <p class="warning-note">
+          <strong>Важно:</strong> Моля, не изпращайте чувствителна медицинска информация (снимки, епикризи) директно през уеб формата. Тези данни трябва да бъдат споделяни само по време на личен преглед.
+        </p> -->
+      </section>
+
+      <section class="policy-section">
+        <h2>4. Трети страни и услуги</h2>
+        <p>За да работи сайтът сигурно и надеждно, използваме следните партньори:</p>
+        <ul class="partner-list">
+          <li><strong>Cloudflare:</strong> Защитава сайта от злонамерени атаки.</li>
+          <li><strong>Mailjet:</strong> Използва се като технически посредник за сигурно изпращане на Вашето съобщение от сайта до нашия имейл.</li>
+        </ul>
+      </section>
+
+      <section class="policy-section">
+        <h2>5. Вашите права</h2>
+        <p>Според GDPR Вие имате право на:</p>
+        <ul>
+          <li>Достъп до Вашите данни.</li>
+          <li>Коригиране или изтриване на Вашите данни.</li>
+          <li>Ограничаване на обработката.</li>
+        </ul>
+        <p>За да упражните тези права, свържете се с нас на: <strong>{email}</strong></p>
+      </section>
+    </div>
+  </section>
+</LayoutMain>
+
+<style>
+  .policy-wrapper {
+    padding: 4rem 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #333;
+    line-height: 1.7;
+  }
+  h1 { font-size: 2.2rem; color: #1a202c; margin-bottom: 0.5rem; }
+  h2 { font-size: 1.4rem; color: #2d3748; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 2px solid #edf2f7; display: inline-block; }
+  p { margin-bottom: 1.2rem; }
+  .subtitle { color: #718096; margin-bottom: 2rem; }
+  ul { padding-left: 1.5rem; margin-bottom: 1.5rem; }
+  li { margin-bottom: 0.5rem; }
+  .warning-note {
+    background: #fff5f5;
+    border: 1px solid #feb2b2;
+    padding: 1rem;
+    border-radius: 6px;
+    color: #c53030;
+  }
+  .partner-list strong { color: #2b6cb0; }
+</style>

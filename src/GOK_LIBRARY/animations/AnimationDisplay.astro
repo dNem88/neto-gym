@@ -1,0 +1,49 @@
+---
+import LoadingCircleStat from "./loading-circle-stat.astro";
+import LoadingContainerStat from "./loading-container-stat.astro";
+
+const data = {
+  label: 'slug-to-blog-post',
+  number: 'Даниел Немски',
+ 
+};
+// console.log(Meeting);
+---
+
+<h4>ANIMATIONS</h4>
+<div class="animations-container" id="animations">
+  <div class="group">
+    <h6>CARD 1</h6>
+    <LoadingCircleStat
+            countTarget="2000"
+            completionPercent="75"
+            label="Етикет на анимацията"
+    />
+  </div>
+  <div class="group">
+    <h6>CARD 2</h6>
+    <LoadingContainerStat
+     
+    />
+  </div>
+
+
+  
+</div>
+
+<style>
+
+  .group {
+    display: flex;
+    padding: 1.5rem;
+    width: 450px;
+    gap: 1rem;
+    flex-direction: column;
+  }
+   .animations-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem 1rem;
+  }
+</style>

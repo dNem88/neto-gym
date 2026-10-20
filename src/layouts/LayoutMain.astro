@@ -1,0 +1,105 @@
+---
+import ConsentManagerLight from "../components/ConsentManagerLight.astro";
+import defaultGraphImage from "@/src/assets/graph.webp";
+import { getImage } from "astro:assets";
+import JsonLd from "../components/JsonLd.astro";
+import "../styles/globals.css";
+import '@fontsource-variable/raleway';
+
+// import Header from "../pages/components/HeaderTemplate6/Header.astro";
+// import SectionFooter from "../components/Common/SectionFooter.astro";
+const {
+  title = "GOK Studio ",
+  description = "Разработка и поддръжка на уебсайтове.",
+  keywords = [
+    "изработка на уебсайт",
+    "поддръжка на уебсайт",
+    "дизайн на уебсайт",
+  ],
+  // Pass the raw imported object, not a string, as the default
+  image = defaultGraphImage,
+  schemaType = "WebPage", // Default type
+} = Astro.props;
+
+const baseURL = "https://website.com";
+const canonicalURL = new URL(Astro.url.pathname, baseURL);
+const siteName = "GOK Studio";
+
+let socialImageURL = "";
+
+if (typeof image === "string") {
+  socialImageURL = image; // Sanity URLs are already absolute
+} else if (image && typeof image === "object" && image.src) {
+  const optimizedImage = await getImage({
+    src: image,
+    width: 1200,
+    format: "webp",
+  });
+  // Combine baseURL with the optimized path
+  socialImageURL = new URL(optimizedImage.src, baseURL).toString();
+}
+---
+
+<!doctype html>
+<html lang="bg">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <!-- To properly display in google searches use this setup -->
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="icon" href="/favicon-48.png" sizes="48x48" type="image/png" />
+    <link rel="icon" href="/favicon.png" sizes="512x512" type="image/png" />
+
+    <!-- Optional: keep SVG for browsers -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <link rel="canonical" href={canonicalURL} />
+    <JsonLd
+      title={title}
+      description={description}
+      url={canonicalURL.toString()}
+      type={schemaType}
+    />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:url" content={canonicalURL.toString()} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImageURL} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageURL} />
+    <ConsentManagerLight />
+  </head>
+  <body>
+    <!-- <Header /> -->
+    <main class="main">
+      <slot name="main" /> 
+      <!-- <SectionFooter /> -->
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+    font-family: var(--font-raleway), sans-serif;
+  }
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+</style>

@@ -1,0 +1,117 @@
+---
+import AddIcon from '../icons/add-icon.astro';
+import CloseIcon from '../icons/close-icon.astro';
+
+const { 
+  question = "Relative topic question with an answer?", 
+  answer = "Relative answer" 
+} = Astro.props;
+---
+
+
+<div class="question-container">
+  <div class="visible-question-container js-toggle-trigger">
+    <p class="body1 question-text">{question}</p>
+    
+    <div class="icon-button">
+      <div class="icon-add"><AddIcon class="icon" size={24} /></div>
+      <div class="icon-close hidden"><CloseIcon class="icon" size={24} /></div>
+    </div>
+  </div>
+
+  <div class="answer-container">
+    <div class="answer-content">
+      <p>{answer}</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Select all question containers on the page
+  const containers = document.querySelectorAll('.question-container');
+
+  containers.forEach(container => {
+    const trigger = container.querySelector('.js-toggle-trigger');
+    const addIcon = container.querySelector('.icon-add');
+    const closeIcon = container.querySelector('.icon-close');
+    const answer = container.querySelector('.answer-container');
+
+    trigger.addEventListener('click', () => {
+      // Toggle the 'active' class on the main container
+      const isActive = container.classList.toggle('active');
+
+      // Sync the icons and answer visibility
+      addIcon?.classList.toggle('hidden', isActive);
+      closeIcon?.classList.toggle('hidden', !isActive);
+      
+     
+      if (isActive) {
+        answer.style.maxHeight = answer.scrollHeight + "px";
+      } else {
+        answer.style.maxHeight = "0px";
+      }
+    });
+  });
+</script>
+
+<style>
+  .question-container {
+    border: 1px solid rgba(218, 218, 218, 0.301);
+    padding: 8px 8px;
+    border-radius: 12px;
+    box-shadow: 2px 2px 5px rgb(224, 224, 224);
+  }
+
+  .visible-question-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    cursor: pointer;
+  }
+
+  .question-text {
+    max-width: 80%;
+    margin: 0;
+  }
+   .icon-add, .icon-close {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+   }
+
+  .icon-button {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-main-1);
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+   
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  /* Answer Toggle Logic */
+  .answer-container {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+
+  .answer-content {
+    padding: 1rem 0;
+  }
+
+  /* Active State Styling */
+  .active .icon-button {
+    background: var(--primary-main-1, #f0f0f0);
+  }
+  .icon{
+    fill: white;
+  }
+</style>

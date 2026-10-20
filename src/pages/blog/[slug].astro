@@ -1,0 +1,171 @@
+---
+//@ts-nocheck
+export const prerender = true; // Keystatic работи най-добре със статично генериране
+import LayoutMain from "@/src/layouts/LayoutMain.astro";
+import { getAllPosts } from "@/src/keystatic/getAllPosts";
+import { getEntry } from 'astro:content';
+import { render } from 'astro:content';
+// console.log("тест",post,)
+// 1. Генериране на статични пътища за всяка статия
+export async function getStaticPaths() {
+  const allPosts = await getAllPosts();
+  return allPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+
+// 2. Вземане на съдържанието за рендериране
+const entry = await getEntry('blog', post.slug);
+if (!entry) return Astro.redirect("/404");
+
+const { Content } = await render(entry);
+
+// Форматиране на датата за Schema
+const date = post.publishedAt ? post.publishedAt : "2026-01-01";
+---
+
+<LayoutMain
+  title={post.title ?? "Блог статия "}
+  description={`${post.description?.slice(0, 70) ?? "Блог статия"}...`}
+  image={post.mainImageUrl ?? "/graph.webp"}
+  schemaType="BlogPosting"
+  datePublished={date}
+  authorName={post.author?.name}
+>
+<Fragment slot="main">
+
+  <section class="content-wrapper">
+    <div class="title-section">
+      <h3>{post.title}</h3> 
+
+      <div class="post-data-container">
+        <div class="post-info">
+          <p class="description">
+            {`категория: ${post.tags?.[0]?.title ?? "Няма категория"}`}
+          </p>
+          <p class="description">
+            {`публикуван на: ${date}`}
+          </p>
+        </div>
+        
+        <div class="author-info">
+          <p class="description" style={{ fontWeight: "450" }}>
+            {`автор: ${post.author?.name ?? "името на автора е неизвестно"}`}
+          </p>
+          {
+            post.author?.image && (
+              <img
+                src={post.author.image}
+                width={100}
+                height={100}
+                alt={post.author.name}
+                style={{
+                  border: "4px solid var(--secondary-lighter-1)",
+                  borderRadius: "50%",
+                  objectFit: "cover"
+                }}
+              />
+            )
+          }
+        </div>
+      </div>
+    </div>
+
+    {post.mainImageUrl && (
+      <img
+        class="main-image"
+        aria-hidden="true"
+        loading="lazy"
+        decoding="async"
+        src={post.mainImageUrl}
+        alt={post.title}
+      />
+    )}
+
+    <section class="body-section">
+      {/* Заменяме PortableText с нативния Content компонент на Astro */}
+      <Content />
+    </section>
+  </section>
+</Fragment>
+</LayoutMain>
+
+<style>
+  .content-wrapper {
+    width: min(100%, 900px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10rem 1rem;
+    margin: 0 auto;
+    background-color: white;
+  }
+
+  .title-section {
+    width: 100%;
+    z-index: 15;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 2rem;
+  }
+
+  .post-data-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+    .post-info {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .description {
+      color: rgb(128, 128, 128);
+      margin: 0.2rem 0;
+    }
+    
+    .author-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+
+  @media screen and (min-width: 870px) {
+    .author-info {
+      align-items: flex-end;
+      text-align: right;
+    }
+  }
+
+  .main-image {
+    width: 100%;
+    aspect-ratio: 4 / 2;
+    object-fit: cover;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    border-radius: 8px;
+  }
+
+  .body-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    line-height: 1.8;
+    color: #333;
+  }
+
+  /* Стилизиране на елементите вътре в Content */
+  .body-section :global(h2) { font-size: 2rem; margin-top: 2rem; }
+  .body-section :global(p) { margin-bottom: 1rem; }
+  .body-section :global(img) { border-radius: 8px; max-width: 100%; }
+</style>

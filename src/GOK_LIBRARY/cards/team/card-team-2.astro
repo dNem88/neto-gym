@@ -1,0 +1,117 @@
+---
+const { name, profession, avatarUrl, bio } = Astro.props;
+import { Image } from "astro:assets";
+import Button2 from "../../buttons/button2.astro";
+
+// Logic to handle name coloring safely
+const nameParts = name ? name.split(" ") : ["", ""];
+---
+
+<div class="card">
+  
+  
+  <div class="image-container">
+    {
+      avatarUrl &&
+        (typeof avatarUrl === "string" ? (
+          <img class="card-image" src={avatarUrl} alt={name} loading="lazy" />
+        ) : (
+          <Image class="card-image" src={avatarUrl} alt={name} />
+        ))
+    }
+  </div>
+
+  <div class="text-content">
+    <p class="body1 name-text">
+      {nameParts[0]} <span class="highlight">{nameParts.slice(1).join(" ")}</span>
+    </p>
+    <p class="body2 profession-text">
+      {profession}
+    </p>
+  </div>
+
+  <Button2
+    variant={"transparent"}
+    href={"/biography"}
+    content={"БИОГРАФИЯ"}
+    width={"100%"}
+    sx={{
+      marginTop: "1.5rem", /* Reduced from 3rem for tighter rhythm */
+      borderRadius: "8px",
+    }}
+  />
+</div>
+
+<style>
+  .card {
+    position: relative;
+    width: min(100%, 330px);
+    box-sizing: border-box;
+    padding: 1.5rem; /* Increased for breathing room */
+    background-color: var(--secondary-dark-1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
+  }
+
+
+  .image-container {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 12px;
+    z-index: 5;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+
+  /* FIXED: Changed from .image-card to .card-image to match your HTML */
+  .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .card:hover .card-image {
+    transform: scale(1.08);
+  }
+
+  .text-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 5;
+  }
+
+  .name-text {
+    font-weight: 650;
+    color: white;
+    text-align: center;
+    font-size: 1.25rem;
+    margin: 0;
+  }
+
+  .highlight {
+    color: var(--primary-main-1);
+  }
+
+  .profession-text {
+    font-weight: 450;
+    color: #c5c5c5; /* Using a Slate gray for better hierarchy */
+    font-size: 0.95rem;
+    margin: 0;
+    text-align: center;
+  }
+</style>

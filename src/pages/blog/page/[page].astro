@@ -1,0 +1,59 @@
+---
+// src/pages/blog/page/[page].astro
+// @ts-nocheck
+export const prerender = true;
+import LayoutMain from "@/src/layouts/LayoutMain.astro";
+import BlogGrid from "@/src/components/blog/BlogGrid.astro";
+import { getAllPosts } from "@/src/keystatic/getAllPosts";
+import InnerPagesHeroSection from "../../_components/sections/InnerPagesHeroSection.astro";
+
+
+export async function getStaticPaths({ paginate }) {
+  const allPosts = await getAllPosts();
+
+  // Sort once
+  const sortedPosts = allPosts.sort(
+    (a, b) =>
+      new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime(),
+  );
+
+  // 1. Get ALL unique tags
+  const allUniqueTags = [];
+  sortedPosts.forEach((post) => {
+    post.tags?.forEach((tag) => {
+      if (!allUniqueTags.find((t) => t.slug === tag.slug)) {
+        allUniqueTags.push(tag);
+      }
+    });
+  });
+
+  // 2. Get the actual top 10 posts from the ENTIRE blog
+  const globalTopPosts = sortedPosts.slice(0, 10);
+
+  return paginate(sortedPosts, {
+    pageSize: 6,
+    props: { allUniqueTags, globalTopPosts }, // Pass both through
+  });
+}
+
+// 3. Destructure the props
+const { page, allUniqueTags, globalTopPosts } = Astro.props;
+---
+
+<LayoutMain title={`Блог - Страница ${page.currentPage}`}>
+  <Fragment slot="main">
+    <InnerPagesHeroSection
+      title={'Блог'}
+      breadcrumb={`блог | ${page.currentPage}`}
+    />
+    <BlogGrid
+      posts={page.data}
+      tags={allUniqueTags}
+      topPosts={globalTopPosts}
+      currentPage={page.currentPage}
+      currentPage={page.currentPage}
+      maxPages={page.lastPage}
+      basePath="/blog"
+    />
+  </Fragment>
+</LayoutMain>

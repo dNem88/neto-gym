@@ -1,0 +1,15 @@
+---
+import styles from './BlogTypography.module.css';
+
+interface Props {
+  ordered?: boolean;
+}
+
+const { ordered = false } = Astro.props;
+const Tag = ordered ? 'ol' : 'ul';
+const className = ordered ? styles['number-list'] : styles['bullet-list'];
+---
+
+<Tag class={className}>
+  <slot />
+</Tag>

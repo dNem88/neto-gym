@@ -1,0 +1,18 @@
+---
+import styles from './BlogTypography.module.css';
+
+interface Props {
+  src: string;
+  alt?: string;
+}
+
+const { src, alt = "Изображение към статията" } = Astro.props;
+---
+
+<div class={styles['image-container']}>
+  <img
+    src={src}
+    loading="lazy"
+    alt={alt}
+  />
+</div>

@@ -1,0 +1,91 @@
+/*Animated Message Box*/
+.circle-icon-container{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    top: -40px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background: linear-gradient(90deg,rgb(170, 247, 236) 0%,rgb(237, 188, 247) 100%);
+    z-index: 10;
+}
+.check-icon{
+    width: 76px;
+    height: 76px;
+    fill: white;
+}
+.message-box{
+    position: relative;
+   width: 350px;
+   height: fit-content;
+   box-shadow: 2px 2px 8px rgba(122, 122, 122, 0.2);
+   border-radius: 36px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding:3rem 1.5rem;
+   background-color: white;
+}
+.message-text{
+    color: black;
+}
+.error-message{
+    width: 350px;
+    color: black;
+    padding: 10px 1rem;
+    border-radius: 14px;
+    background-color: rgb(233, 158, 158);
+}
+/*MailForm*/
+.form{
+    box-sizing: border-box;
+   width: min(100%, 450px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background: white;
+    border: 1px solid white;
+    border-radius: 24px;
+    padding: 2rem;
+    gap: 2rem;
+    color: white;
+   box-shadow: 0px 0px 14px rgb(233, 233, 233);
+}
+
+.inputs-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 0;
+    padding-bottom: .2rem;
+}
+.label {
+    color: black;
+    font-weight: 500;
+    position: relative;
+    padding-left: 12px;
+}
+.input{
+    background-color: white;
+    height: 2.8rem;
+    padding: 1rem;
+    border: 1px solid rgb(218, 218, 218);
+    border-radius: 12px;
+    align-items: flex-start;
+}
+.textarea{
+    background-color: white;
+    height: 10rem;
+    padding: 1rem;
+    align-items: flex-start;
+    border: 1px solid rgb(218, 218, 218);
+    border-radius: 12px;
+}
+.consent-checkbox{
+    
+}

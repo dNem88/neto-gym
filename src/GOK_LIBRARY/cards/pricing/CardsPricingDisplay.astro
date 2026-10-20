@@ -1,0 +1,87 @@
+---
+import CardPricing1 from "./card-pricing-1.astro";
+import CardPricing2 from "./card-pricing-2.astro";
+
+const card1 = {
+  mainPrice: "350",
+  serviceName: "ИЗРАБОТКА НА САЙТ",
+  planTitle: "Бизнес",
+  features: [
+    "✔/до 5 страници",
+    "✔/мобилна версия",
+    "✔/бърза скорост на зареждане",
+    "✔/адаптиран дизайн темплейт с възможност за персонализация",
+    "✔/хостинг + SSL сертификат",
+    "✔/настройка на имейл за получаване на запитвания",
+    "✔/базова SEO оптимизация",
+    "✔/блог секция за статии и новини",
+  ],
+};
+const card2 = {
+  planTitle: "Стандарт",
+  maintenancePrice: "50",
+  label: "ПОДДРЪЖКА НА САЙТ",
+  maintenanceFeatures: [
+    "✔/включен хостинг и SSL сертификат",
+    "✔/отстраняване на грешки",
+    "✔/резервно копие",
+    "✔/сигурност и защита",
+    "✔/оптимизация на скоростта",
+    "✔/поддръжка на домейн и хостинг",
+    "✔/промени по съдържанието до 2 пъти месечно",
+    "✖/неограничени промени",
+  ],
+};
+---
+
+<h4>Pricing Cards</h4>
+<div class="cards-container-row" id="testimonials-cards">
+  <div class="group">
+    <h6>CARD 1</h6>
+    <CardPricing1
+      serviceName={card1.serviceName}
+      mainPrice={card1.mainPrice}
+      planTitle={card1.planTitle}
+      features={card1.features}
+    />
+  </div>
+  <div class="group">
+    <h6>CARD 2</h6>
+    <CardPricing2
+      label={card2.label}
+      maintenancePrice={card2.maintenancePrice}
+      planTitle={card2.planTitle}
+      maintenanceFeatures={card2.maintenanceFeatures}
+    />
+  </div>
+
+  <div class="group"></div>
+</div>
+
+<style>
+  .cards-container-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    top: 3rem;
+    left: 0;
+    border: 2px dashed black;
+    overflow-x: scroll;
+  }
+  .group {
+    display: flex;
+    padding: 1.5rem;
+    width: 450px;
+    gap: 1rem;
+    flex-direction: column;
+  }
+  .icon {
+    position: relative;
+    width: 15px;
+    height: 15px;
+    fill: white;
+    z-index: 10;
+  }
+</style>

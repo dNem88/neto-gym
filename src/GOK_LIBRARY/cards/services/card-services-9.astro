@@ -1,0 +1,120 @@
+---
+const { service, content, num, classname, href } = Astro.props;
+import Button4 from "../../buttons/button4.astro";
+---
+
+<div class={`card ${classname}`}>
+  <div class="triangle"></div>
+  <div class="number-container">
+    <span class="number">{num}</span>
+  </div>
+  <div class="content-container">
+    <p
+      class={"body2 text"}
+      style={{
+        fontWeight: "700",
+        textAlign: "center",
+      }}
+    >
+      {service}
+    </p>
+    <p
+      class={"body3 text"}
+      style={{
+        fontWeight: "350",
+        textAlign: "center",
+      }}
+    >
+      {content}
+    </p>
+  </div>
+
+  <Button4 variant="primary" content="НАУЧЕТЕ ПОВЕЧЕ" sx={{ width: "100%" }} />
+
+  <style>
+    .card {
+      position: relative;
+      background-color: white;
+      width: min(100%, 320px);
+      border-radius: 16px;
+      min-height: 450px;
+      box-sizing: border-box;
+
+      scale: 1;
+      transition: all 0.5s ease;
+
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 4px 4px 10px rgb(221, 221, 221);
+      gap: 2rem;
+    }
+    .triangle {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: 65%;
+      height: 20px;
+      clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+      background: var(--primary-main-1);
+    }
+    .content-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      width: 100%;
+      flex-grow: 1;
+      z-index: 10;
+    }
+
+    .link {
+      color: var(--secondary-main-1);
+    }
+    .link:hover {
+      text-decoration: underline;
+    }
+    .text {
+      color: var(--secondary-dark-1);
+      text-align: center;
+    }
+    .number-container {
+      position: absolute;
+      width: 185px;
+      height: 185px;
+      aspect-ratio: 1/1;
+    
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      overflow: hidden;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .number {
+      font-size: 185px;
+      font-weight: 1000;
+      padding: 0;
+      text-align: end;
+
+      color: var(--primary-lighter-1);
+    }
+    .card:hover {
+      scale: 1.05;
+      background-color: var(--secondary-dark-1);
+      .text {
+        color: white;
+      }
+      .number {
+        color: var(--secondary-main-1);
+      }
+    }
+  </style>
+</div>

@@ -1,0 +1,162 @@
+---
+const { mainPrice, serviceName, planTitle, features } = Astro.props;
+---
+
+<div class="pricing-card-gradient">
+  <div class="pricing-card">
+    <p class="plan-title">
+      {planTitle}
+    </p>
+
+    <div class="pricing-card-header">
+      <div class="pricing-card-header-price">
+        <h2 class="plan-price">
+          {mainPrice}
+        </h2>
+        <span class="header-span">EUR</span>
+      </div>
+
+      <p  style="font-weight: 550; font-size: 13px;">
+        {serviceName}
+      </p>
+    </div>
+
+    <div class="features-container">
+      {features?.map((x) => (
+        <div class="features-item">
+          <span class="features-item-icon">
+            {x.split("/")[0]}
+          </span>
+          <p class="feature">
+            {x.split("/")[1]}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+.pricing-card-gradient{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 330px);
+  border-radius: 39px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  background: linear-gradient(
+    45deg,
+    var(--secondary-lighter-1) 0%,
+    var(--primary-lighter-1) 100%
+  );
+}
+
+.pricing-card-gradient:hover{
+  scale: 1.02;
+}
+
+.pricing-card{
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 31px;
+  gap: 1rem;
+}
+
+.plan-title{
+   color: black;
+  font-weight: 350;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+}
+
+.pricing-card-header{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 4px;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.pricing-card-header-price{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding-bottom: 8px;
+}
+
+.plan-price{
+  position: relative;
+  color: black;
+  font-weight: 700;
+  font-size: 84px;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+.plan-price::after{
+  content: "";
+  position: absolute;
+  display: block;
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(
+    45deg,
+    #86f7e4 0%,
+    rgb(226, 122, 252) 65%,
+    rgb(143, 233, 236) 85%,
+    transparent 100%
+  );
+  bottom: -8px;
+  left: 0;
+}
+
+.header-span{
+  font-size: 24px;
+  font-weight: 450;
+  padding-left: 6px;
+}
+
+.features-container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 12px;
+}
+
+.features-item{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.features-item-icon{
+  color: rgb(170, 170, 170);
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-right: 4px;
+  font-weight: 250;
+}
+
+.feature{
+  color: rgb(83, 83, 83);
+  font-weight: 250;
+}
+
+
+</style>

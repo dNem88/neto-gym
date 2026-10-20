@@ -1,0 +1,84 @@
+---
+const { service, content, icon: Icon, classname, href } = Astro.props;
+
+---
+
+<div class={`card ${classname}`}>
+  
+    {Icon && <Icon class="card-icon" />}
+ 
+
+  <div class="content-container">
+    <p
+      class={"body2 text"}
+      style={{
+        fontWeight: "700",
+        textAlign: "center",
+      }}>{service}</p
+    >
+    <p
+      class={"body3 text"}
+      style={{
+        fontWeight: "350",
+        textAlign: "center",
+      }}>{content}</P
+    >
+  </div>
+
+  <a class="link" href={href}>{"научете повече"}</a>
+</div>
+
+<style>
+ .card {
+    position: relative;
+   
+    width: min(100%, 340px);
+    min-height: 400px;
+    box-sizing: border-box;
+    background-color: white;
+    scale: 1;
+    transition:
+      scale 0.5s ease,
+      background-color 0.5s ease,
+      fill 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 4px 4px 10px rgb(221, 221, 221);
+    gap: 1rem;
+  }
+  .card-icon{
+    fill: var(--secondary-main-1);
+    width: 75px;
+    height: 75px;
+  }
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    flex-grow: 1;
+    z-index: 10;
+  }
+
+  .link {
+    color: var(--secondary-main-1);
+  }
+  .link:hover{
+    text-decoration: underline;
+  }
+  .text {
+    color: var(--secondary-dark-1);
+    text-align: center;
+  }
+
+  .card:hover {
+    scale: 1.05;
+   
+  }
+</style>

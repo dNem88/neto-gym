@@ -1,0 +1,98 @@
+---
+const { title, content, num, classname } = Astro.props;
+---
+
+<div class=`card17 ${classname}` >
+  <div class="number-container17">
+    <p class="number17">{num}</p>
+  </div>
+
+  <div class="content-container17">
+    <p
+      class="body1"
+      style={{
+        fontWeight: "700",
+        textAlign: "left",
+        color: 'black'
+      }}
+    >
+      {title}
+    </p>
+    <p
+      class="body3"
+      style={{
+        fontWeight: "350",
+        textAlign: "left",
+      }}
+    >
+      {content}
+    </p>
+  </div>
+</div>
+
+<style>
+  .card17 {
+    position: relative;
+    border-radius: 32px;
+    width: min(100%, 350px);
+    min-height: 350px;
+    box-sizing: border-box;
+    background-color: white;
+    scale: 1;
+    transition:
+      scale 0.5s ease,
+      background-color 0.5s ease,
+      fill 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    cursor: pointer;
+    align-items: flex-start;
+    justify-content: center;
+    box-shadow: 4px 4px 10px rgb(221, 221, 221);
+    gap: 1rem;
+  }
+  .number-container17 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background-color: var(--primary-light-1);
+  }
+  .content-container17 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    flex-grow: 1;
+    z-index: 10;
+  }
+
+  .number17 {
+    font-size: 2rem;
+    font-weight: 1000;
+    padding: 0 !important;
+    text-align: end;
+    color: white;
+    padding: 0;
+    margin: 0;
+  }
+
+ 
+
+  .card17:hover {
+    scale: 1.05;
+    background-color: var(--primary-light-1);
+
+    .number17 {
+      color: var(--secondary-dark-1);
+    }
+    .number-container17 {
+      background-color: var(--secondary-lighter-1);
+    }
+  }
+</style>

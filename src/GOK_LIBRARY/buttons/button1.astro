@@ -1,0 +1,174 @@
+---
+const { 
+  href, 
+  content, 
+  variant, 
+  sx, 
+  width, 
+  type = "button", 
+  disabled = false, 
+  ...rest 
+} = Astro.props;
+
+const Element = type === "button" ? "a" : "button";
+const className = `button1 ${variant}`;
+---
+
+<Element 
+  href={href} 
+  type={type !== "button" ? type : undefined}
+  class={className}
+  style={{ width, ...sx }}
+  aria-disabled={disabled}
+  disabled={disabled}
+  {...rest}
+>
+  <span class={`span span-${variant}`}></span>
+  
+  <div class="button-content">
+    <slot name="start-icon" />
+    <span class="button-text">{content}</span>
+    <slot name="end-icon" />
+  </div>
+</Element>
+
+
+<style>
+  /* 1. CORE BUTTON LOGIC */
+  .button1 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Spacing & Sizing */
+    min-width: 12.5rem;
+    height: 3.25rem;
+    padding: 0 1.5rem;
+    
+    /* Typography */
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    
+    /* Mechanics */
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+    border-radius: 2px;
+    transition: color 0.4s ease, border-color 0.4s ease;
+  }
+
+  /* 2. CONTENT WRAPPER (Text and Icons) */
+  .button-content {
+    position: relative;
+    z-index: 5; /* Always above the sliding background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px; /* Perfect spacing between icons and text */
+    width: 100%;
+    pointer-events: none;
+  }
+
+  /* Icon Scaling */
+  .button1 :global(svg) {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    transition: fill 0.4s ease;
+  }
+
+  /* 3. ANIMATED BACKGROUND SPAN */
+  .span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0; /* Start hidden */
+    height: 100%;
+    z-index: 2;
+    transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .button1:hover .span {
+    width: 100%;
+  }
+
+  /* 4. VARIANTS */
+
+  /* PRIMARY (Solid -> White) */
+  .primary {
+    background-color: var(--secondary-dark-1);
+    color: white;
+    border: 1px solid var(--secondary-dark-1);
+  }
+  .span-primary { background-color: white; }
+  .primary:hover { color: var(--secondary-dark-1); }
+  .primary:hover :global(svg) { fill: var(--secondary-dark-1); }
+  .primary :global(svg) { fill: white; }
+
+  /* SECONDARY (Solid -> White) */
+  .secondary {
+    background-color: var(--primary-main-1);
+    color: white;
+    border: 1px solid var(--primary-main-1);
+  }
+  .span-secondary { background-color: white; }
+  .secondary:hover { color: var(--primary-main-1); }
+  .secondary:hover :global(svg) { fill: var(--primary-main-1); }
+  .secondary :global(svg) { fill: white; }
+
+  /* PRIMARY REVERSE (Outline -> Solid) */
+  .primary-reverse {
+    background-color: transparent;
+    color: var(--secondary-dark-1);
+    border: 1px solid var(--secondary-dark-1);
+  }
+  .span-primary-reverse { background-color: var(--secondary-dark-1); }
+  .primary-reverse:hover { color: white; }
+  .primary-reverse:hover :global(svg) { fill: white; }
+  .primary-reverse :global(svg) { fill: var(--secondary-dark-1); }
+
+  /* SECONDARY REVERSE (Outline -> Solid) */
+  .secondary-reverse {
+    background-color: transparent;
+    color: var(--primary-main-1);
+    border: 1px solid var(--primary-main-1);
+  }
+  .span-secondary-reverse { background-color: var(--primary-main-1); }
+  .secondary-reverse:hover { color: white; }
+  .secondary-reverse:hover :global(svg) { fill: white; }
+  .secondary-reverse :global(svg) { fill: var(--primary-main-1); }
+
+  /* BLACK (Black -> White) */
+  .black {
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+  }
+  .span-black { background-color: white; }
+  .black:hover { color: black; }
+  .black:hover :global(svg) { fill: black; }
+  .black :global(svg) { fill: white; }
+
+  /* WHITE (White -> Black) */
+  .white {
+    background-color: white;
+    color: black;
+    border: 1px solid white;
+  }
+  .span-white { background-color: black; }
+  .white:hover { color: white; }
+  .white:hover :global(svg) { fill: white; }
+  .white :global(svg) { fill: black; }
+
+  /* 5. DISABLED STATE */
+  .button1:disabled, 
+  .button1[aria-disabled="true"] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+</style>

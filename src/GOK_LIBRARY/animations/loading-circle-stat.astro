@@ -1,0 +1,133 @@
+---
+const {
+  completionPercent = 50,
+  strokeColor = 'var(--primary-main-1)',
+  countTarget = 1500,
+  duration = 1,
+  label = "Default Label" // New prop for the text
+} = Astro.props;
+
+const radius = 70;
+const circumference = 2 * Math.PI * radius;
+const targetOffset = circumference * ((100 - completionPercent) / 100);
+---
+
+<div 
+  class="stat-wrapper" 
+  data-target={countTarget} 
+  data-duration={duration} 
+  data-offset={targetOffset}
+>
+  <div class="circle-container">
+    <svg class="svg-element" viewBox="0 0 160 160">
+      <circle
+        cx="80"
+        cy="80"
+        r={radius}
+        fill="transparent"
+        stroke="var(--secondary-main-1)"
+        stroke-width="10"
+      ></circle>
+      
+      <circle
+        class="progress-circle"
+        cx="80"
+        cy="80"
+        r={radius}
+        fill="none"
+        stroke={strokeColor}
+        stroke-width="10"
+        stroke-linecap="round"
+        stroke-dasharray={circumference}
+        style={`stroke-dashoffset: ${circumference}; transition: stroke-dashoffset ${duration}s ease-out;`}
+      ></circle>
+    </svg>
+    
+    <span class="stat-number">0</span>
+  </div>
+
+  {/* The Label */}
+  <p class="body3 stat-label">{label}</p>
+</div>
+
+<style>
+  .stat-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem; /* Space between circle and label */
+    width: 200px;
+    
+  }
+
+  .circle-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 160px;
+    height: 160px;
+  }
+
+  .svg-element {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+
+  .stat-number {
+    position: absolute;
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: white; /* Match your landing page theme */
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stat-label {
+    margin: 0;
+
+    font-weight: 500;
+    color: #dbdde0; /* Slate gray for professional look */
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+</style>
+
+<script>
+  function runCircleAnimations() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const container = entry.target as HTMLElement;
+          const circle = container.querySelector('.progress-circle') as HTMLElement;
+          const numberSpan = container.querySelector('.stat-number') as HTMLElement;
+
+          const target = parseInt(container.dataset.target || "0");
+          const duration = parseFloat(container.dataset.duration || "1.5");
+          const offset = container.dataset.offset || "0";
+
+          if (circle) circle.style.strokeDashoffset = offset;
+
+          if (numberSpan) {
+            let start = 0;
+            const step = (timestamp: number) => {
+              if (!start) start = timestamp;
+              const progress = Math.min((timestamp - start) / (duration * 1000), 1);
+              numberSpan.innerText = Math.floor(progress * target).toLocaleString();
+              if (progress < 1) window.requestAnimationFrame(step);
+            };
+            window.requestAnimationFrame(step);
+          }
+          observer.unobserve(container);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    // Note: Targeted .stat-wrapper because it holds the data attributes now
+    document.querySelectorAll('.stat-wrapper').forEach(el => observer.observe(el));
+  }
+
+  runCircleAnimations();
+  document.addEventListener('astro:after-swap', runCircleAnimations);
+</script>

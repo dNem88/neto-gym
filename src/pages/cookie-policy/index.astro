@@ -1,0 +1,96 @@
+---
+import LayoutMain from "@/src/layouts/LayoutMain.astro";
+import { getBusinessData } from "@/src/keystatic/getBusinessData";
+const business = await getBusinessData() ?? {};
+const {businessName = 'GOK Studio', address = '', email = '', phone = ''} = business;
+
+
+// Date for the policy update
+const lastUpdated = "07.01.2026";
+---
+
+<LayoutMain title="Политика за бисквитките" description="Информация за използваните бисквитки">
+  <section class="policy-wrapper" slot="main">
+    <div class="content-container">
+      <h1>Политика за бисквитките</h1>
+      
+      <p class="subtitle">
+        Тази политика е обновена на <strong>{lastUpdated}</strong> и важи за посетители на нашия уебсайт.
+      </p>
+
+      <section class="policy-section">
+        <h2>1. Въведение</h2>
+        <p>
+          Нашият уебсайт, {'https://website.com'}, използва бисквитки и подобни технологии за осигуряване на сигурност и функционалност. По-долу ще намерите подробна информация за това какви данни събираме и защо.
+        </p>
+      </section>
+
+      <section class="policy-section">
+        <h2>2. Какво представляват бисквитките?</h2>
+        <p>
+          Бисквитката е малък текстов файл, който се съхранява от вашия браузър. Той помага на уебсайта да функционира правилно, да разпознава опити за злонамерени атаки и да подобрява вашата сигурност.
+        </p>
+      </section>
+
+      <section class="policy-section">
+        <h2>3. Технически и необходими бисквитки</h2>
+        <p>
+          Тези бисквитки са критични за работата на сайта. Те позволяват основни функции като навигация, сигурност и защита срещу спам. <strong>Ние можем да поставим тези бисквитки без вашето изрично съгласие</strong>, тъй като те са необходими за предоставяне на услугата.
+        </p>
+      </section>
+
+      <section class="policy-section">
+        <h2>4. Използвани технологии</h2>
+        <ul class="cookie-list">
+          <li>
+            <strong>Cloudflare (Сигурност):</strong> Използва се за защита срещу DDoS атаки и филтриране на зловреден трафик. Събира данни като IP адрес (анонимизиран) за идентифициране на заплахи.
+          </li>
+          <li>
+            <strong>Cloudflare Turnstile (Защита от спам):</strong> Заменя традиционния reCAPTCHA. Това е технология, ориентирана към поверителността, която потвърждава, че сте човек, без да ви проследява с маркетингови цели.
+          </li>
+          <li>
+            <strong>Mailjet API:</strong> Вашите данни, изпратени чрез контактната форма, се обработват защитено чрез Mailjet за доставка на съобщението до нас. Не се поставят проследяващи бисквитки в браузъра ви.
+          </li>
+        </ul>
+      </section>
+
+      <section class="policy-section">
+        <h2>5. Маркетинг и Анализ</h2>
+        <p>
+          Този уебсайт <strong>не използва</strong> маркетингови бисквитки, Google Analytics или пиксели за проследяване на Facebook. Ние ценим вашата поверителност и не споделяме данни с рекламни мрежи.
+        </p>
+      </section>
+
+      <section class="policy-section">
+        <h2>6. Данни за контакт</h2>
+        <p>За въпроси относно вашата поверителност, моля свържете се с нас:</p>
+        <div class="contact-card">
+          <p><strong>Компания:</strong> {businessName}</p>
+          <p><strong>Адрес:</strong> {address}</p>
+          <p><strong>Е-мейл:</strong> <a href={`mailto:${email}`}>{email}</a></p>
+          <p><strong>Телефон:</strong> {phone}</p>
+        </div>
+      </section>
+    </div>
+  </section>
+</LayoutMain>
+
+<style>
+  .policy-wrapper {
+    padding: 4rem 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #333;
+    line-height: 1.6;
+  }
+  h1 { font-size: 2.5rem; margin-bottom: 1rem; color: #1a202c; }
+  h2 { font-size: 1.5rem; margin-top: 2rem; margin-bottom: 0.75rem; color: #2d3748; }
+  p { margin-bottom: 1rem; }
+  .subtitle { color: #718096; font-style: italic; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; }
+  .cookie-list { padding-left: 1.5rem; margin-bottom: 2rem; }
+  .cookie-list li { margin-bottom: 1rem; }
+  .contact-card { background: #f7fafc; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #abb7c2; }
+  .contact-card p { margin-bottom: 0.5rem; }
+  a { color: #a7b8c9; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+</style>

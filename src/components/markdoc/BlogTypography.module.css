@@ -1,0 +1,376 @@
+/* BLOG TYPOGRAPHY - Migrated from Sanity */
+
+/* TYPOGRAPHY */
+/* Updated Global Spacing */
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  margin-top: 1.5em; /* Add top margin to separate from previous sections */
+  margin-bottom: 0.5em;
+}
+
+/* The first heading in a post shouldn't have top margin */
+.h1:first-child,
+.h2:first-child {
+  margin-top: 0;
+}
+
+.body1,
+.body2,
+.body3,
+.body4 {
+  margin-top: 0;
+  margin-bottom: 1.6em; /* Increased from 1.25em for better readability */
+}
+/*HEADINGS*/
+/* H1 */
+.h1 {
+  max-width: 100%;
+
+  font-weight: 550;
+  font-size: clamp(2.5rem, 6vw + 1rem, 5.5rem);
+  line-height: 1;
+  letter-spacing: 0em;
+}
+
+/* H2 */
+.h2 {
+  max-width: 100%;
+
+  font-weight: 500;
+  font-size: clamp(2.2rem, 4.8vw + 1rem, 4.5rem);
+  line-height: 1.1;
+  letter-spacing: 0em;
+
+  word-break: normal;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+/* H3 */
+.h3 {
+  max-width: 100%;
+
+  font-weight: 450;
+  font-size: clamp(2.1rem, 3.2vw + 1rem, 3.2rem);
+  line-height: 1.167;
+  letter-spacing: 0em;
+
+  word-break: normal;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+/* H4 */
+.h4 {
+  max-width: 100%;
+
+  font-weight: 450;
+  font-size: clamp(1.85rem, 2.4vw + 1rem, 2.5rem);
+  line-height: 1.2;
+  letter-spacing: 0.25px;
+
+  word-break: normal;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+/* H5 */
+.h5 {
+  max-width: 100%;
+
+  font-weight: 450;
+  font-size: clamp(1.55rem, 1.8vw + 1rem, 2.1rem);
+  line-height: 1.3;
+  letter-spacing: 0em;
+
+  word-break: normal;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+/* H6 */
+.h6 {
+  max-width: 100%;
+
+  font-weight: 450;
+  font-size: 20px; /* Responsive size on mobile */
+  font-size: clamp(1.25rem, 1vw + 1rem, 1.8rem);
+
+  line-height: 1.3;
+  letter-spacing: 0.15px;
+  word-break: normal;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+/*PARAGRAPHS*/
+.body1 {
+  max-width: 100%;
+
+  font-weight: 400;
+  font-size: 18px;
+  font-size: clamp(1.125rem, 0.5vw + 1rem, 1.275rem);
+  line-height: 1.4;
+  letter-spacing: 0.6px;
+  word-break: normal; /* Prevents breaking a word mid-word */
+  white-space: normal; /* Allows text to wrap normally */
+  overflow-wrap: break-word; /* Moves the word to the next line */
+}
+
+.body2 {
+  max-width: 100%;
+
+  font-weight: 400;
+  font-size: 18px;
+  font-size: clamp(1rem, 0.2vw + 1rem, 1.125rem);
+  line-height: 1.4;
+  letter-spacing: 0.6px;
+  word-break: normal; /* Prevents breaking a word mid-word */
+  white-space: normal; /* Allows text to wrap normally */
+  overflow-wrap: break-word; /* Moves the word to the next line */
+}
+.body3 {
+  max-width: 100%;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.38;
+  letter-spacing: 0.6px;
+  word-break: normal; /* Prevents breaking a word mid-word */
+  white-space: normal; /* Allows text to wrap normally */
+  overflow-wrap: break-word; /* Moves the word to the next line */
+}
+.body4 {
+  max-width: 100%;
+
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.32;
+  letter-spacing: 0.6px;
+  word-break: normal; /* Prevents breaking a word mid-word */
+  white-space: normal; /* Allows text to wrap normally */
+  overflow-wrap: break-word; /* Moves the word to the next line */
+}
+/*Have to transfer this to other module*/
+.button {
+  max-width: 100%;
+
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+}
+
+.caption {
+  max-width: 100%;
+
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.66;
+  letter-spacing: 0.03333em;
+}
+
+.overline {
+  max-width: 100%;
+
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 2.66;
+  letter-spacing: 0.08333em;
+  text-transform: uppercase;
+}
+
+/*BLOCKQUOTE*/
+.blockquote-container {
+  padding: 85px 60px;
+  position: relative;
+  border-radius: 8px;
+  width: 100%;
+  border-left: 10px solid var(--primary-light-1);
+  border-top-left-radius: 18px;
+  border-bottom-left-radius: 18px;
+  background-color: var(--gray-background);
+  margin: 2rem 0;
+}
+
+@media screen and (min-width: 1200px) {
+  .blockquote-container {
+    width: 100%;
+    background-color: var(--gray-background);
+  }
+}
+
+.blockquote {
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  font-weight: 400;
+  font-size: clamp(1rem, 0.2vw + 1rem, 1.125rem);
+  line-height: 1.4;
+  letter-spacing: 0.6px;
+  word-break: normal;
+  white-space: normal;
+  overflow-wrap: break-word;
+  font-style: italic;
+  color: black;
+}
+
+.opening-quotes {
+  fill: black;
+  position: absolute;
+  top: 50px;
+  left: 20px;
+  width: 36px;
+  height: 36px;
+  transform: rotate(180deg);
+}
+
+.closing-quotes {
+  fill: black;
+  position: absolute;
+  bottom: 50px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+}
+
+/*LIST TYPE*/
+.bullet-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 1rem;
+  padding-bottom: 1rem;
+}
+
+.number-list {
+  width: 100%;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.checkmark-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 1rem;
+  padding-bottom: 1rem;
+  list-style-type: disc;
+}
+
+.bullet-list-item {
+  width: 100%;
+  color: black;
+  list-style-position: inside;
+  padding: 0.2rem;
+  list-style-type: disc;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: clamp(1rem, 0.2vw + 1rem, 1.125rem);
+  line-height: 1.4;
+  letter-spacing: 0.6px;
+  word-break: normal;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.bullet-list-item::marker {
+  color: black;
+  font-size: 1.5rem;
+}
+
+.number-list-item {
+  color: black;
+  list-style-type: decimal;
+  margin-left: 1rem;
+  max-width: 100%;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: clamp(1rem, 0.2vw + 1rem, 1.125rem);
+  line-height: 1.4;
+  letter-spacing: 0.6px;
+  word-break: normal;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.number-list-item::marker {
+  color: black;
+  font-weight: 600;
+}
+
+.checkmark-list-item {
+  width: 100%;
+  color: black;
+  list-style-position: inside;
+  padding: 0.2rem;
+  list-style-type: disc;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: clamp(1rem, 0.2vw + 1rem, 1.125rem);
+  line-height: 1.4;
+  letter-spacing: 0.6px;
+  word-break: normal;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.checkmark-list-item::marker {
+  color: rgb(137, 172, 212);
+  font-weight: 600;
+  content: "✔";
+}
+
+/*ImageComponent*/
+.image-container {
+  width: 100%;
+  height: 100%;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+@media screen and (min-width: 650px) {
+  .image-container {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/*MARKS*/
+.strong {
+  display: inline-block;
+  font-weight: 600;
+}
+
+.emphasis {
+  display: inline-block;
+  color: var(--primary-main-1);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.link {
+  text-decoration: underline;
+  color: black;
+}
+
+.link:hover {
+  color: var(--secondary-dark-1);
+}

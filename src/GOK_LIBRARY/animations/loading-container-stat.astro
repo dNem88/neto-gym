@@ -1,0 +1,97 @@
+---
+const {
+  countTarget = 5000,
+  duration = 1,
+  style,
+  class: className = "" 
+} = Astro.props;
+---
+
+<span 
+  class={`span-number ${className}`} 
+  data-target={countTarget} 
+  data-duration={duration}
+>
+  <span class="count-value" style={style}>0</span>
+  <span class="plus-sign" style={style}>+</span>
+</span>
+
+<style>
+  
+  .span-number {
+    width: fit-content; /* Changed from 120px to fit-content for flexibility */
+    /* min-width: 100px; */
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    font-weight: 650;
+    font-size: 2rem;
+    justify-content: flex-start;
+    z-index: 10;
+    gap: 0.1rem;
+    margin-right: 10px;
+    /* Keeps numbers from jumping/jittering during animation */
+    font-variant-numeric: tabular-nums;
+  }
+
+  .plus-sign {
+    /* Ensures the plus stays aligned with the numbers */
+    display: inline-block;
+  }
+</style>
+
+<script>
+  function initCountAnimations() {
+    const animateCount = (element, target, duration) => {
+      let startTimestamp = null;
+      
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        
+        // Calculate progress (0 to 1)
+        const progress = Math.min((timestamp - startTimestamp) / (duration * 1000), 1);
+        
+        // Smoothly update the text
+        element.innerText = Math.floor(progress * target).toLocaleString();
+        
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      
+      window.requestAnimationFrame(step);
+    };
+
+    const observerOptions = {
+      threshold: 0.5, // Trigger when 50% visible
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const container = entry.target;
+          const valueSpan = container.querySelector('.count-value');
+          
+          const target = parseInt(container.getAttribute('data-target') || "0");
+          const duration = parseFloat(container.getAttribute('data-duration') || "1");
+
+          if (valueSpan) {
+            animateCount(valueSpan, target, duration);
+          }
+
+          // Stop observing this element after animation starts
+          observer.unobserve(container);
+        }
+      });
+    }, observerOptions);
+
+    // Select all instances of this component
+    document.querySelectorAll('.span-number').forEach((el) => observer.observe(el));
+  }
+
+  // Run on load
+  initCountAnimations();
+
+  // Run after Astro View Transition navigation
+  document.addEventListener('astro:after-swap', initCountAnimations);
+</script>

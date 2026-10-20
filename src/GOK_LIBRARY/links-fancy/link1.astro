@@ -1,0 +1,52 @@
+---
+const {
+    href,
+    label,
+    ...rest // Capture extra props like target="_blank"
+} = Astro.props
+---
+
+ <a class="link1" href={href} {...rest}>{label}</a>
+
+ <style>
+    .link1 {
+        color: var(--secondary-dark-1);
+        font-weight: 700;
+        font-size: 16px; /* Ensure a readable base size */
+        position: relative;
+        text-decoration: none !important;
+        display: flex; 
+        flex-direction: row;
+        transition: color 0.3s ease;
+        flex-wrap: nowrap;
+        width: fit-content;
+    }
+
+    /* The Animated Underline */
+    .link1::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -4px; /* Move it down slightly so it doesn't touch the text */
+        width: 0;
+        height: 2px; /* 3px can look a bit "heavy" on small text; 2px is elegant */
+        background-color: var(--primary-main-1);
+        transition: width 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+        border-radius: 2px; /* Softens the edges of the line */
+    }
+
+    .link1:hover {
+        color: var(--primary-main-1); /* Subtle color shift alongside the line */
+    }
+
+    .link1:hover::after {
+        width: 100%;
+    }
+
+    /* Accessibility: Keyboard Focus */
+    .link1:focus-visible {
+        outline: 2px dashed var(--primary-main-1);
+        outline-offset: 4px;
+        border-radius: 2px;
+    }
+ </style>

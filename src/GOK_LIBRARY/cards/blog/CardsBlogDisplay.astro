@@ -1,0 +1,103 @@
+---
+import CardBlog1 from "./card-blog-1.astro";
+import CardBlog2 from "./card-blog-2.astro";
+import CardBlog3 from "./card-blog-3.astro";
+import CardBlog4 from "./card-blog-4.astro";
+import CardBlog5 from "./card-blog-5.astro";
+import CardBlog6 from "./card-blog-6.astro";
+import CardBlog7 from "./card-blog-7.astro";
+import CardBlog8 from "./card-blog-8.astro";
+import Meeting from "../../../../assets/meeting1.webp";
+
+const post = {
+  slug: 'slug-to-blog-post',
+  author: 'Даниел Немски',
+  publishedAt: "24/10/2024T31244",
+  title: "Как да поддържате безопасна електрическа инсталация у дома",
+  excerpt: "Практични стъпки за избягване на рискове, токови удари и пожари.",
+  mainImageUrl: '/src/assets/meeting1.webp',
+};
+// console.log(Meeting);
+---
+
+<h4>SERVICES CARDS</h4>
+<div class="cards-container-row" id="service-cards">
+  <div class="group">
+    <h6>CARD 1</h6>
+    <CardBlog1
+      post={post}
+    />
+  </div>
+  <div class="group">
+    <h6>CARD 2</h6>
+    <CardBlog2
+     post={post}
+    />
+  </div>
+  <!-- <div class="group">
+    <h6>CARD 3</h6>
+    <CardBlog3
+     post={post}
+    />
+  </div> -->
+  <div class="group">
+    <h6>CARD 4</h6>
+    <CardBlog4
+     post={post}
+    />
+  </div>
+  <!-- <div class="group">
+    <h6>CARD 5</h6>
+    <CardBlog5
+     post={post}
+    />
+  </div> -->
+  <!-- <div class="group">
+    <h6>CARD 6</h6>
+    <CardBlog6
+      post={post}
+    />
+   
+  </div> -->
+  <!-- <div class="group">
+    <h6>CARD 7</h6>
+    <CardBlog7
+    post={post}
+    />
+  </div> -->
+  <div class="group">
+    <h6>CARD 8</h6>
+    <CardBlog8
+      post={post}
+    />
+  </div>
+  
+</div>
+
+<style>
+  .cards-container-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    top: 3rem;
+    left: 0;
+    border: 2px dashed black;
+    overflow-x: scroll;
+  }
+  .group {
+    display: flex;
+    padding: 1.5rem;
+    width: 450px;
+    gap: 1rem;
+    flex-direction: column;
+  }
+  .icon {
+    position: relative;
+    width: 15px;
+    height: 15px;
+    fill: white;
+    z-index: 10;
+  }
+</style>

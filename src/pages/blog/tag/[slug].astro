@@ -1,0 +1,67 @@
+---
+// src/pages/blog/tag/[slug].astro
+export const prerender = true;
+
+import LayoutMain from "@/src/layouts/LayoutMain.astro";
+import InnerPagesHeroSection from "../../_components/sections/InnerPagesHeroSection.astro";
+import BlogGrid from "@/src/components/blog/BlogGrid.astro";
+import { getAllPosts } from "@/src/keystatic/getAllPosts";
+
+export async function getStaticPaths() {
+  const allPosts = await getAllPosts();
+  const PAGE_SIZE = 6; // Трябва да съвпада с размера в пагинирания файл
+  
+  const allUniqueTags = [];
+  allPosts.forEach(post => {
+    post.tags?.forEach(tag => {
+      if (!allUniqueTags.find(t => t.slug === tag.slug)) {
+        allUniqueTags.push(tag);
+      }
+    });
+  });
+ 
+  return allUniqueTags.map((tag) => {
+    const filteredPosts = allPosts.filter(post => 
+      post.tags?.some(t => t.slug === tag.slug)
+    ).sort((a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime());
+   
+    // Изчисляваме макс страници тук
+    const maxPages = Math.ceil(filteredPosts.length / PAGE_SIZE);
+
+    return {
+      params: { slug: tag.slug },
+      props: { 
+        tag, 
+        // Показваме само първите 6 поста за основната страница на тага
+        posts: filteredPosts.slice(0, PAGE_SIZE), 
+        allUniqueTags,
+        maxPages,
+        globalTopPosts: allPosts.slice(0, 10) 
+      },
+    };
+  });
+}
+
+const { tag, posts, allUniqueTags, globalTopPosts, maxPages } = Astro.props;
+console.log(tag)
+---
+
+<LayoutMain title={`Статии в категория: ${tag.title}`}>
+  <Fragment slot='main'>
+  <InnerPagesHeroSection
+    title={tag.title}
+    breadcrumb={`блог | ${tag.title}`}
+  />
+  <BlogGrid
+    posts={posts}
+    tags={allUniqueTags}
+    topPosts={globalTopPosts}
+    activeTag={tag.slug}
+    currentPage={1} // Винаги е 1 за този файл
+    maxPages={maxPages} // Вече е динамично изчислено
+    basePath={`/blog/tag/${tag.slug}`}
+  />
+
+  </Fragment>
+
+</LayoutMain>

@@ -1,0 +1,78 @@
+---
+/* no props */
+---
+
+<div class="slider-wrapper">
+  <swiper-container
+    init="false"
+    class="my-swiper"
+    slides-per-view="1"
+    space-between="25"
+    navigation="true"
+    pagination="true"
+  >
+    <slot />
+  </swiper-container>
+</div>
+
+<script>
+  // Import the register function to initialize Web Components
+  import { register } from 'swiper/element/bundle';
+  register();
+
+  const swiperEl = document.querySelector('swiper-container');
+
+  const swiperParams = {
+    slidesPerView: 1,
+    spaceBetween: 25,
+    breakpoints: {
+      640: {
+        slidesPerView: 1,
+        spaceBetween: 20,
+      },
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 40,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 50,
+      },
+    },
+    // Ensure navigation/pagination work inside the shadow DOM
+    injectStyles: [
+      `
+      .swiper-button-next,
+      .swiper-button-prev {
+        color: black; /* Customize arrow color */
+      }
+      .swiper-pagination-bullet-active {
+        background: var(--primary-main-1); /* Customize pagination color */
+       
+      }
+      `,
+    ],
+  };
+
+  // Assign parameters and initialize
+  Object.assign(swiperEl, swiperParams);
+  swiperEl.initialize();
+</script>
+
+<style>
+  .slider-wrapper {
+    width: min(100%,1200px);
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    /* Swiper elements need a defined height or block display sometimes */
+    display: block;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  /* Ensure the custom element is visible */
+  swiper-container {
+    width: 100%;
+    height: 100%;
+  }
+</style>

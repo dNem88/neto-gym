@@ -1,0 +1,89 @@
+---
+import Button1 from "./button1.astro";
+import Button2 from "./button2.astro";
+import Button3 from "./button3.astro";
+import Button4 from "./button4.astro";
+import Link1 from "../links-fancy/link1.astro";
+import Link2 from "../links-fancy/link2.astro";
+import DentalIcon from "../icons/dental-icon.astro";
+---
+
+				<h4 >BUTTONS</h4>
+				
+				<div class="group" id="buttons">
+					<h6>Button1</h6>
+					<Button1 variant="primary" content="Button1 primary">
+						<DentalIcon slot="start-icon" class="icon"/>
+					</Button1>
+					<Button1 variant="secondary" content="Button1 secondary"/>
+					<Button1 variant="black" content="Button1 black"/>
+					<Button1 variant="primary" content="Button1 primary">
+						<DentalIcon slot="end-icon"  class="icon"/>
+					</Button1>
+				
+				</div>
+
+				<div class="group">
+					<h6>Button2</h6>
+					<Button2 variant="primary" content="Button2 primary">
+						<DentalIcon slot="start-icon" class="icon"/>
+					</Button2>
+					<Button2 variant="secondary" content="Button2 secondary"/>
+					<Button2 variant="black" content="Button2 black"/>
+					<Button2 variant="primary" content="Button2 primary">
+						<DentalIcon slot="end-icon"  class="icon"/>
+					</Button2>
+					<Button2 variant="secondary-reverse" content="Button2 secondary-reverse"/>
+					<Button2 variant="transparent" content="Button2 transparent"/>
+				
+				</div>
+
+				<div class="group">
+					<h6>Button3</h6>
+					<Button3 variant="primary" content="Button3 primary">
+						<DentalIcon slot="start-icon" class="icon"/>
+					</Button3>
+					<Button3 variant="secondary" content="Button3 secondary"/>
+					<Button3 variant="black" content="Button3 black"/>
+					<Button3 variant="white" content="Button3 white">
+						<DentalIcon slot="end-icon"  class="icon"/>
+					</Button3>
+					
+				
+				</div>
+
+				<div class="group">
+					<h6>Button4</h6>
+					<Button4 variant="primary" content="Button4 primary">
+						<DentalIcon slot="start-icon" class="icon"/>
+					</Button4>
+					<Button4 variant="secondary" content="Button4 secondary"/>
+					<Button4 variant="black" content="Button4 black"/>
+					<Button4 variant="primary" content="Button4 primary">
+						<DentalIcon slot="end-icon"  class="icon"/>
+					</Button4>
+				
+				</div>
+
+				<div class="group">
+					<h6>LINKS FANCY</h6>
+					<Link1 href="/fancy-stuff" label="Link1 fancy"/>
+					<Link2 href="/fancy-stuff2" label="Link2 fancy" variant="dark"/>
+				
+				</div>
+		
+<style>
+	.group{
+		display: flex;
+		padding: 1.5rem;
+		gap: 1rem;
+		flex-direction: column;
+	}
+	.icon{
+		position: relative;
+		width: 15px;
+		height: 15px;
+		fill: white;
+		z-index: 10;
+	}
+</style>

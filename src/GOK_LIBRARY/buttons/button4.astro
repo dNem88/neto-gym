@@ -1,0 +1,106 @@
+---
+// src/GOK-Libary/buttons/Button4.astro
+const { 
+  href, 
+  content, 
+  variant, 
+  sx, 
+  width, 
+  type = "button", 
+  disabled = false, 
+  ...rest 
+} = Astro.props;
+
+// 1. Determine the HTML element (a tag for links, button for submit/reset)
+const Element = type === "button" ? "a" : "button";
+
+// 2. Prepare the class list
+const className = `button4 button4-${variant}`;
+
+// 3. Merge styles
+const style = { 
+  textDecoration: type === "button" ? "none" : undefined, 
+  width: width, 
+  ...sx 
+};
+---
+
+<Element 
+  href={href} 
+  type={type !== "button" ? type : undefined}
+  class={className}
+  style={style}
+  aria-disabled={disabled}
+  disabled={disabled}
+  {...rest}
+>
+  <slot name="start-icon" />
+  <span>{content}</span>
+  <slot name="end-icon" />
+</Element>
+
+<style>
+
+/*Button4 Shine Effect*/
+.button4{
+    position: relative;
+     min-width: 12.5rem;
+    height: 3.25rem;
+    padding: 0 1.5rem;
+    text-align: center;
+    z-index: 10;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    opacity: 1;
+    overflow: hidden;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    
+    color: white;
+  }
+  .button4::before{
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 70%;
+      height: 100%;
+      left: -100%;
+      transition: all 0.55s ease-in-out;
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.24),
+        transparent
+      );
+  }
+  .button4-primary{
+    background: var(--primary-main-1);
+    
+  }
+  .button4-secondary{
+    background: var(--secondary-main-1);
+   
+  }
+  .button4-black{
+    background-color: black;
+  }
+  .button4:hover::before {
+    left: 100%;
+  }
+
+  .button4 > span{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+.button4 > svg{
+    fill: white;
+    width: 16px;
+    height: 16px;
+
+}
+</style>

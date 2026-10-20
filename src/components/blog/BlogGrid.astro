@@ -1,0 +1,146 @@
+---
+// src/components/blog/BlogGrid.astro
+const {
+  posts,       // This is already an array of mapped posts from getAllPosts()
+  topPosts,
+  tags, 
+  currentPage,
+  maxPages,
+  basePath,
+} = Astro.props;
+
+import CardBlog4 from "@/src/GOK_LIBRARY/cards/blog/card-blog-4.astro";
+import Pagination from "./Pagination.astro";
+import CategorySelector from "./categorySelector.astro";
+// console.log(topPosts[0])
+---
+
+<section class="section-wrapper">
+  <aside class="aside-section">
+    <div class="categories-list-container">
+      <h3 class="h6" style={{ fontWeight: "550" }}>Категории</h3>
+      {/* Подаваме таговете на клиента */}
+      <CategorySelector tags={tags}  />
+    </div>
+
+    <div class="top-posts-container">
+      <h3 class="h6" style={{ fontWeight: "550" }}>Популярни статии</h3>
+      {
+        topPosts?.slice(0, 10).map((post) => (
+          <a href={`/blog/${post?.slug}`} class="posts-list-link">
+            {post?.title}
+          </a>
+        ))
+      }
+    </div>
+  </aside>
+  
+  <div class="blog-grid">
+    {posts?.map((post, index) => <CardBlog4 key={index} post={post} />)}
+
+    <Pagination
+      currentPage={currentPage}
+      maxPages={maxPages}
+      basePath={basePath}
+    />
+  </div>
+</section>
+<style>
+  .section-wrapper {
+    position: relative;
+    width: min(100%, 1200px);
+
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 5rem;
+  }
+
+  .aside-section {
+    width: min(100%, 350px);
+
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    order: 2;
+    gap: 5rem;
+  }
+  .categories-list-container {
+    width: 100%;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--gray-background);
+    gap: 8px;
+    padding: 1rem 0;
+  }
+  .category {
+    width: 100%;
+    text-align: left;
+
+    color: black;
+    text-decoration: none;
+    border-bottom: 1px solid rgb(214, 214, 214);
+  }
+  .category:hover {
+    text-decoration: underline;
+    color: var(--secondary-dark-1);
+  }
+  .top-posts-container {
+    width: 100%;
+    padding: 1.5rem;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: var(--gray-background);
+    gap: 8px;
+  }
+  .posts-list-link {
+    color: black;
+    text-decoration: none;
+  }
+  .posts-list-link:hover {
+    text-decoration: underline;
+    color: rgb(90, 90, 90);
+  }
+  .blog-grid {
+    position: relative;
+    width: min(100%, 850px);
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    order: 1;
+
+    padding: 0;
+    margin-bottom: 10rem;
+  }
+  @media screen and (min-width: 650px) {
+    .section-wrapper {
+      width: min(90%, 1200px);
+      padding: 0;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: flex-start;
+      justify-content: space-evenly;
+    }
+    .aside-section {
+      order: 1;
+    }
+    .blog-grid {
+      gap: 2rem 2rem;
+      order: 2;
+    }
+  }
+  @media screen and (min-width: 1200px) {
+  }
+</style>

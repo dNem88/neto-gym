@@ -1,0 +1,109 @@
+---
+const { 
+  title = "", 
+  spanWord = 0, 
+  align = "center", 
+  variant = "dark", 
+  animation = 'ltr',
+  delay = 0,
+  duration = 0.8,
+  class: className = ""
+} = Astro.props;
+
+const words = title.split(" ");
+
+// Animation offsets
+const xOffset = animation === 'ltr' ? '-50px' : '0';
+const yOffset = animation === 'ltr' ? '0' : '50px';
+
+// Mapping alignment to flex properties
+const alignStyles = {
+  left: 'flex-start',
+  center: 'center',
+  right: 'flex-end'
+};
+---
+
+<h2 
+  class={`reveal-heading h4 title-${variant} align-${align} ${className}`} 
+  style={{ 
+    '--x-offset': xOffset, 
+    '--y-offset': yOffset,
+    '--delay': `${delay}s`,
+    '--duration': `${duration}s`,
+    '--align-items': alignStyles[align] || 'center'
+  }}
+>
+  {words.map((word, index) => {
+    const isColored = index === +spanWord;
+    return (
+      <>
+        <span class={isColored ? "span-highlight" : ""}>{word}</span>
+        {index < words.length - 1 && <>&nbsp;</>} 
+      </>
+    );
+  })}
+</h2>
+
+<style>
+  .reveal-heading {
+    /* Layout */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: var(--align-items);
+    width: min(100%, 750px);
+    margin-inline: var(--align-items) === 'center' ? auto : '0';
+    
+    /* Typography */
+    font-family: var(--font-family);
+    margin: 0;
+    line-height: 1.2;
+
+    /* Animation Initial State */
+    opacity: 0;
+    transform: translate(var(--x-offset), var(--y-offset));
+    transition:
+      opacity var(--duration) ease-out,
+      transform var(--duration) cubic-bezier(0.17, 0.55, 0.55, 1);
+    transition-delay: var(--delay);
+    will-change: opacity, transform;
+  }
+
+  /* Active State */
+  .reveal-heading.active {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  /* Specific Alignment margin fixes */
+  .align-center { margin-inline: auto; text-align: center; }
+  .align-left { margin-right: auto; text-align: left; }
+  .align-right { margin-left: auto; text-align: right; }
+
+  /* Highlighting */
+  .span-highlight {
+    color: var(--primary-main-1);
+  }
+
+  /* Theming */
+  .title-dark { color: var(--secondary-dark-1); }
+  .title-light { color: #fff; }
+</style>
+
+<script>
+  function initReveal() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll(".reveal-heading").forEach((el) => observer.observe(el));
+  }
+
+  initReveal();
+  document.addEventListener('astro:after-swap', initReveal);
+</script>

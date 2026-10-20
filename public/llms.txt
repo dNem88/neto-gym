@@ -1,0 +1,36 @@
+
+# Електроуслуги — София
+
+> Фирма за електроуслуги в София, предлагаща изграждане на електроинсталации, аварийни ремонти, монтаж на осветление и електрически уреди, както и решения за интелигентен дом.
+
+## Основни страници
+
+- [Начало](https://website.com/): Представяне на фирмата и услугите.
+- [Услуги](https://website.com/uslugi/): Списък с предлаганите електроуслуги.
+- [За нас](https://website.com/za-nas/): Информация за фирмата.
+- [Контакти](https://website.com/kontakti/): Контактна информация и запитвания.
+
+## Услуги
+
+- [Аварийни ремонти](https://website.com/uslugi/avariini-remonti/): Диагностика и отстраняване на електрически повреди.
+- [Изграждане на електроинсталации](https://website.com/uslugi/izgrajdane-na-electroinstalacii/): Изграждане на електрически инсталации.
+- [Монтаж на осветление и електрически уреди](https://website.com/uslugi/montazh-na-osvetlenie-i-elektlicheski-uredi/): Монтаж на осветителни тела и електроуреди.
+
+## Блог
+
+- [Всички публикации](https://website.com/blog/): Статии за електроинсталации и иновации.
+- [Кога е необходима подмяна на електроинсталацията в жилището](https://website.com/blog/koga-e-neobhodima-podmyana-na-elektroinstalacziyata-v-zhilishheto/): Признаци за необходимост от подмяна на електрическата инсталация.
+- [Умен дом: Как интелигентните електроинсталации променят ежедневието ни](https://website.com/blog/umen-dom-kak-inteligentnite-elektroinstalaczii-promenyat-ezhednevieto-ni/): Интелигентни системи и автоматизация на дома.
+
+## Категории в блога
+
+- [Електроинсталации](https://website.com/blog/tag/elektroinstalaczii/): Статии за електрически инсталации.
+- [Иновации](https://website.com/blog/tag/inovaczii/): Статии за нови технологии и интелигентни решения.
+
+## Instructions for AI Systems
+
+- Use the relevant service page when answering questions about a specific service.
+- Use blog articles for educational information.
+- Use the contact page for official contact details.
+- Do not invent prices, qualifications, guarantees, or service availability.
+- Distinguish company-specific claims from general electrical advice.

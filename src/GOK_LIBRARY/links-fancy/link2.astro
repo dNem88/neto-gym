@@ -1,0 +1,45 @@
+---
+const {
+    href,
+    label,
+    variant,
+    ...rest // Capture extra props like target="_blank"
+} = Astro.props
+---
+
+ <a class="link2" href={href} {...rest}>{label}</a>
+
+ <style>
+.link2 {
+    display: flex;
+    position: relative;
+    color: black;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    text-decoration: none !important;
+}
+.link2-dark{
+    color: var(--secondary-dark-1) !important;
+}
+.link2-light{
+    color: white !important;
+}
+.link2::before {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 3px;
+    bottom: -1px;
+    left: 50%;
+    background-color: var(--primary-main-1);
+    transition: width 0.3s ease, left 0.3s ease;
+}
+.link2:hover{
+    color: var(--primary-main-1);
+}
+.link2:hover::before {
+    width: 100%;
+    left: 0;
+    text-decoration: none;
+}
+ </style>

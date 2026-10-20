@@ -1,0 +1,134 @@
+---
+const { post } = Astro.props;
+let { publishedAt, title, mainImageUrl, author, excerpt, slug } = post;
+import { Image } from "astro:assets";
+
+---
+
+<div class="card">
+  <div class="image-layer">
+   {
+    mainImageUrl && (
+      typeof mainImageUrl === "string" ? (
+        <img src={mainImageUrl} alt={title} class="main-image" loading="lazy" />
+      ) : (
+        /* Ensure src is the object itself */
+        <Image src={mainImageUrl} alt={title} class="main-image" />
+      )
+    )
+  }
+  </div>
+
+  <div class="content-overlay">
+    <div class="author-tag">
+      автор: {author || 'Екип'}
+    </div>
+
+    <div class="text-group">
+      <p class="date-text">
+        {publishedAt?.split("T")[0]}
+      </p>
+      <h3 class="title-text">
+        {title}
+      </h3>
+    </div>
+  </div>
+</div>
+
+<style>
+  .card {
+    position: relative;
+    width: min(100%, 330px);
+    aspect-ratio: 1 / 1;
+    border-radius: 8px; /* Slightly more modern than 4px but stays true to style */
+    overflow: hidden;
+    box-shadow: 1px 1px 10px rgba(204, 203, 203, 0.685);
+    background-color: #eee;
+    cursor: pointer;
+  }
+
+  .image-layer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  .main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .content-overlay {
+    position: absolute;
+    inset: 0; /* Shorthand for top/left/right/bottom: 0 */
+    z-index: 2;
+    padding: 1.5rem; /* Increased for better visual hierarchy */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    /* Gradient overlay for text legibility */
+    background: linear-gradient(
+      20deg, 
+      var(--secondary-dark-1) 10%, 
+      rgba(0, 0, 0, 0.2) 70%
+    );
+    transition: background 0.4s ease;
+  }
+
+  .author-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    background: white;
+    border-radius: 4px;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .text-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .date-text {
+    font-size: 0.85rem;
+    font-weight: 350;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+  }
+
+  .title-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+    line-height: 1.3;
+    /* Prevent title from covering too much of the image */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Interactions */
+  .card:hover .content-overlay {
+    background: linear-gradient(
+      20deg, 
+      var(--secondary-dark-1) 5%, 
+      rgba(255, 255, 255, 0) 70%
+    );
+  }
+
+  .card:hover .main-image {
+    transform: scale(1.1);
+  }
+</style>

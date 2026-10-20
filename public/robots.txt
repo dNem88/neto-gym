@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Exclude sensitive or low-value SEO pages
+Disallow: /admin/
+Disallow: /keystatic
+Disallow: /api/
+Disallow: /privacy-policy
+Disallow: /cookie-policy
+
+# Link to your sitemap (Astro generates sitemap-index.xml)
+Sitemap: https://website.com/sitemap-index.xml

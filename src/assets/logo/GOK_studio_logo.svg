@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="78.722649mm"
+   height="54.920979mm"
+   viewBox="0 0 78.722649 54.920979"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="GOK_studio_logo.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false" />
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1661">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0.79534543"
+         id="stop1657" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop1659" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1653">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0.80960816"
+         id="stop1649" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop1651" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1643">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop1639" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0.80876297;"
+         offset="0.62465143"
+         id="stop1647" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0.57020646;"
+         offset="1"
+         id="stop1641" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1643"
+       id="linearGradient1645"
+       x1="48.806255"
+       y1="59.169846"
+       x2="129.35262"
+       y2="99.429993"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1653"
+       id="linearGradient1655"
+       x1="47.92712"
+       y1="101.56444"
+       x2="126.47026"
+       y2="101.56444"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-6.3723636,-17.402442)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1661"
+       id="linearGradient1663"
+       x1="74.122368"
+       y1="102.9"
+       x2="98.649841"
+       y2="112.64743"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-6.3723636,-17.402442)" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-41.375257,-40.253978)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.6408px;font-family:Uroob;-inkscape-font-specification:'Uroob, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;white-space:pre;inline-size:144.796;fill:url(#linearGradient1645);fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:22.9333;stroke-opacity:1;paint-order:fill markers stroke"
+       x="88.574547"
+       y="98.204216"
+       id="text236"
+       transform="translate(-6.3723636,-17.402442)"><tspan
+         x="88.574547"
+         y="98.204216"
+         id="tspan982">GOK</tspan></text>
+    <rect
+       style="fill:url(#linearGradient1655);fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:22.9333;stroke-opacity:1;paint-order:fill markers stroke"
+       id="rect1782"
+       width="78.543144"
+       height="1.5128878"
+       x="41.554756"
+       y="83.405556" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.2832px;font-family:Uroob;-inkscape-font-specification:'Uroob, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:url(#linearGradient1663);fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:22.9333;stroke-opacity:1;paint-order:fill markers stroke"
+       x="79.608208"
+       y="95.007576"
+       id="text1786"><tspan
+         sodipodi:role="line"
+         id="tspan1784"
+         style="fill:url(#linearGradient1663);fill-opacity:1;stroke:#000000;stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
+         x="79.608208"
+         y="95.007576">studio</tspan></text>
+  </g>
+</svg>

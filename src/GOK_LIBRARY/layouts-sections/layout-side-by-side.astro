@@ -1,0 +1,101 @@
+---
+
+const { 
+  sx, 
+  sxLeft, 
+  sxRight, 
+  classnameLayout = '', 
+  classnameLeft = '', 
+  classnameRight = '', 
+  classnameSectionsWrapper = '' ,
+  
+} = Astro.props;
+
+/**
+ * Note on styles: 
+ * In Astro, if you pass an object to 'style', it will automatically 
+ * be converted to an inline style string.
+ */
+---
+
+<section 
+  class={`layout-side-by-side ${classnameLayout}`} 
+  style={sx}
+>
+
+  <div class="title-section">
+    <slot name="title"/>
+  </div>
+
+  <div class={`sections-wrapper ${classnameSectionsWrapper}`}>
+    <div 
+      class={`inner-section ${classnameLeft}`} 
+      style={sxLeft}
+    > 
+      <slot name="left" />
+    </div>
+
+    <div 
+      class={`inner-section ${classnameRight}`} 
+      style={sxRight}
+    >
+      <slot name="right" />
+    </div>
+  </div>
+  
+  <slot name="absolute-figure" />
+</section>
+
+
+<style>
+    /*LayoutSideBySide*/
+.layout-side-by-side{
+    position: relative;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: clamp(2rem, 4vw + 1rem, 5rem);
+    padding-bottom: 10rem;
+   
+}
+.title-section{
+  width: min(100$,1400px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+.sections-wrapper{
+    position: relative;
+    width: min(100%, 1400px);
+    border-radius: border-box;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+   
+}
+@media screen and (min-width: 1200px)  {
+    .sections-wrapper{
+
+        align-items: stretch;
+    }
+    
+}
+.inner-section{
+    position:relative;
+    display: flex;
+   width: min(100%, 600px);
+    z-index: 5;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+</style>

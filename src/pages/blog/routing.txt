@@ -1,0 +1,61 @@
+ИНСТРУКЦИИ ЗА МАРШРУТИТЕ (BLOG ROUTES)
+Този документ описва как файловата структура в src/pages/blog се превръща в работещи URL адреси.
+
+1. Основен списък (Landing Page)
+URL: yourdomain.com/blog
+
+Файл: src/pages/blog/index.astro
+
+Цел: Показва първа страница с най-новите публикации (Page 1).
+
+Логика: Взема всички статии чрез getAllPosts() и показва първите 6.
+
+2. Пагинация (Pagination)
+URL: yourdomain.com/blog/page/[номер] (напр. /blog/page/2)
+
+Файл: src/pages/blog/page/[page].astro
+
+Цел: Странициране на всички статии в блога.
+
+Логика: Използва paginate() функцията на Astro.
+
+3. Категории / Тагове (Tags)
+Основен таг:
+
+URL: yourdomain.com/blog/tag/[slug] (напр. /blog/tag/zdrave)
+
+Файл: src/pages/blog/tag/[slug].astro
+
+Цел: Показва всички статии, филтрирани по конкретен таг.
+
+Пагинация на таг:
+
+URL: yourdomain.com/blog/tag/[slug]/page/[номер]
+
+Файл: src/pages/blog/tag/[slug]/page/[page].astro
+
+Цел: Когато дадена категория има твърде много статии, те се страницират тук.
+
+4. Единична статия (Single Post)
+URL: yourdomain.com/blog/[slug] (напр. /blog/kak-da-gotvim-zdravoslovno)
+
+Файл: src/pages/blog/[slug].astro
+
+Цел: Пълното съдържание на статията.
+
+Важно: Този файл използва getStaticPaths, за да генерира страница за всяка статия от Keystatic.
+
+ВАЖНИ КРАТКИ БЕЛЕЖКИ
+Консистенция на Aside компонента:
+
+Във всеки от горепосочените файлове, винаги извличайте allUniqueTags и globalTopPosts от пълния списък на getAllPosts().
+
+Предавайте ги като пропсове (props) на BlogGrid.astro, за да остане страничната лента (Sidebar) еднаква навсякъде.
+
+Достъп до данни:
+
+Използвайте директно post.title, post.slug и т.н. (данните са вече "плоски" благодарение на нашия мапер). Не търсете вътре в post.data.
+
+Логика на връзките (Links):
+
+В Pagination.astro, винаги проверявайте дали currentPage === 2. Ако е така, бутонът "Назад" трябва да води към /blog, а не към /blog/page/1.

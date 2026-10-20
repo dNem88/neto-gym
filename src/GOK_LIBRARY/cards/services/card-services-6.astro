@@ -1,0 +1,81 @@
+---
+import { Image } from "astro:assets";
+const { service, classname, href, imageUrl } = Astro.props;
+// console.log(Astro.props);
+import Button4 from "../../buttons/button4.astro";
+---
+
+<!-- Both options to pass the image are valid --><!-- imageUrl={card.imageUrl}
+      imageUrl={Meeting} -->
+<div
+  class={`card ${classname}`}
+  style={{
+    backgroundImage: `url(${imageUrl})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+  }}
+>
+  <div class="title-container">
+    <p
+      class="body1 title"
+      style={{
+        fontWeight: "550",
+        color: "white",
+        textAlign: "center",
+      }}
+    >
+      {service}
+    </p>
+  </div>
+  <div class="button-container">
+    <Button4
+      variant={"primary"}
+      href={href || "/services"}
+      content={"Научете повече"}
+    />
+  </div>
+</div>
+
+<style>
+  .card{
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 3px solid rgb(241, 241, 241);
+  width: min(100%, 320px);
+  aspect-ratio: 1/1.5;
+  box-sizing: border-box;
+  background-color: white;
+  scale: 1;
+  transition: scale .5s ease, background-color .5s ease, fill .5s ease;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title-container{
+  width: 100%;
+  padding: .75rem 2rem;
+  background: linear-gradient( var(--secondary-dark-1),var(--secondary-main-1) 125% );
+}
+
+.button-container{
+  width: 100%;
+  background: linear-gradient(transparent, var(--secondary-dark-1) 60% );
+  height: 30%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+.card:hover{
+  scale: 1.05;
+}
+.card:hover .title11-container{
+  background: var(--secondary-main-1);
+}
+
+</style>

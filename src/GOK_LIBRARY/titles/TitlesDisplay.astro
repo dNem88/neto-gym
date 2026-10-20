@@ -1,0 +1,141 @@
+---
+import Title1 from "./title1.astro";
+import Title3 from "./title3.astro";
+import Title4 from "./title4.astro";
+import Title5 from "./title5.astro";
+import Title6 from "./title6.astro";
+
+const data = {
+  label: 'Title3',
+  title: 'Добре дошъл в компонентната библиотека "GOK Library"',
+  align: 'center',
+  variant: 'body1',
+  theme: 'dark'
+};
+
+---
+
+<h4>Titles</h4>
+<div class="titles-container" id="animations">
+     <div class="group">
+    <h6>Title1</h6>
+    <Title1
+          title={data.title}
+          label={data.label}
+          align={data.align}
+          variant={data.variant}
+    />
+    <Title1
+          title={data.title}
+          label={data.label}
+          align={'left'}
+          variant={'dark'}
+          variant="h5"
+    />
+     <Title1
+          title={data.title}
+          label={data.label}
+          align={'right'}
+          variant={'dark'}
+          variant="h6"
+    />
+  </div>
+  <div class="group">
+    <h6>Title3</h6>
+    <Title3
+          title={data.title}
+          label={data.label}
+          align={data.align}
+          variant={data.variant}
+    />
+    <Title3
+          title={data.title}
+          label={data.label}
+          align={'left'}
+          variant={'dark'}
+    />
+     <Title3
+          title={data.title}
+          label={data.label}
+          align={'right'}
+          variant={'dark'}
+    />
+  </div>
+ 
+ <div class="group">
+    <h6>Title4</h6>
+    <Title4
+          title={data.title}
+          align={data.align}
+          variant={data.variant}
+    />
+    <Title4
+          title={data.title}
+          align={'left'}
+          variant={'dark'}
+          spanWord="4"
+    />
+     <Title4
+          title={data.title}
+          align={'right'}
+          variant={'dark'}
+          animation="somethin different from ltr"
+          spanWord='5'
+    />
+  </div>
+
+  <div class="group">
+    <h6>Title5</h6>
+    <Title5
+          title={data.title}
+          variant={data.variant}
+    />
+    <Title5
+          title={data.title}
+          variant={'light'}
+          animation="btt"
+    />
+    
+  </div>
+  <div class="group">
+    <h6>Title6</h6>
+     <Title6
+          title={data.title}
+          variant={'dark'}
+          animation="ltr"
+    />
+    <Title6
+          title={data.title}
+          variant={'light'}
+          animation="btt"
+    />
+  </div>
+</div>
+
+<style>
+   .titles-container{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    top: 3rem;
+    left: 0;
+    overflow-x: scroll;
+    height: 720px;
+   }
+  .group {
+    display: flex;
+    padding: 1.5rem;
+    width: 650px;
+    gap: 1rem;
+    flex-direction: column;
+   
+  }
+   .animations-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem 1rem;
+  }
+</style>

@@ -1,0 +1,134 @@
+/* Container for the Animated Message to center it */
+.message-box-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 300px;
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popIn {
+    0% { opacity: 0; transform: scale(0.8) translateY(20px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.message-box {
+    position: relative;
+    width: 350px;
+    height: fit-content;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 1.5rem 2rem 1.5rem; /* Top padding increased for the icon */
+    background-color: white;
+}
+
+.circle-icon-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, rgb(170, 247, 236) 0%, rgb(237, 188, 247) 100%);
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.check-icon {
+    width: 50px;
+    height: 50px;
+    fill: white;
+}
+
+.message-text {
+    color: #333;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* MailForm */
+.form {
+    box-sizing: border-box;
+    width: min(100%, 450px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9); /* Slightly more opaque for readability */
+    border: 1px solid white;
+    border-radius: 16px;
+    padding: 24px;
+    gap: 16px;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.inputs-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+}
+
+.label {
+    color: #1a1a1a;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding-left: 4px;
+}
+
+.input {
+    background-color: white;
+    height: 3rem;
+    padding: 0 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #a0aec0;
+}
+
+.error-message {
+    width: 100%;
+    color: #b91c1c;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: #fee2e2;
+    font-size: 0.9rem;
+    border: 1px solid #fecaca;
+}
+
+.consent-checkbox {
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+}
+.checkbox-wrapper{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+   
+   
+}
+.body2{
+     max-width: 100%;
+ 
+  padding-left: 6px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.38;
+  letter-spacing: 0.6px;
+  word-break: normal; /* Prevents breaking a word mid-word */
+  white-space: normal; /* Allows text to wrap normally */
+  overflow-wrap: break-word; /* Moves the word to the next line */
+}

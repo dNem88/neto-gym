@@ -1,0 +1,146 @@
+---
+import CardServices1 from "./card-services-1.astro";
+import CardServices2 from "./card-services-2.astro";
+import CardServices3 from "./card-services-3.astro";
+import CardServices4 from "./card-services-4.astro";
+import CardServices5 from "./card-services-5.astro";
+import CardServices9 from "./card-services-9.astro";
+import CardServices13 from "./card-services-13.astro";
+import CardServices16 from "./card-services-16.astro";
+import CardServices17 from "./card-services-17.astro";
+import CardServices21 from "./card-services-21.astro";
+import GoogleIcon from "../../icons/google-icon.astro";
+import Meeting from "../../../../assets/meeting1.webp";
+import FacebookIcon from "../../icons/facebook-icon.astro";
+const card = {
+  href: "/template6/services#section-2",
+  service: "Изграждане и подмяна на електрически инсталации",
+  content: `Цялостни инсталации за домове, офиси и обекти. Подмяна на кабели, защити и ел. табла.`,
+  imageUrl: "/src/assets/meeting1.webp",
+};
+// console.log(Meeting);
+---
+
+<h4>SERVICES CARDS</h4>
+<div class="cards-container-row" id="service-cards">
+  <div class="group">
+    <h6>CARD 1</h6>
+    <CardServices1
+      service={card.service}
+      content={card.content}
+      href={card.href}
+      imageUrl={Meeting}
+    />
+  </div>
+    <div class="group">
+    <h6>CARD 2</h6>
+    <CardServices2
+      service={card.service}
+      content={card.content}
+      href={card.href}
+      icon={FacebookIcon}
+    />
+  </div>
+   <div class="group">
+    <h6>CARD 3</h6>
+    <CardServices3
+      service={card.service}
+      content={card.content}
+      href={card.href}
+      icon={GoogleIcon}
+    />
+  </div>
+   <div class="group">
+    <h6>CARD 4</h6>
+    <CardServices4
+      service={card.service}
+      content={card.content}
+      href={card.href}
+    />
+  </div>
+  <div class="group">
+    <h6>CARD 5</h6>
+    <CardServices5
+      service={card.service}
+      content={card.content}
+      href={card.href}
+      icon={GoogleIcon}
+    />
+  </div>
+   <div class="group">
+    <h6>CARD 9</h6>
+    <CardServices9
+      service={card.service}
+      content={card.content}
+      href={card.href}
+      num="07"
+      
+    />
+  </div>
+  <div class="group">
+    <h6>CARD 13</h6>
+    <CardServices13
+      service={card.service}
+      content={card.content}
+      href={card.href}
+      icon={FacebookIcon}
+    >
+      <FacebookIcon slot={"icon"} />
+    </CardServices13>
+  </div>
+  <div class="group">
+    <h6>CARD 16</h6>
+    <CardServices16
+      service={card.service}
+      content={card.content}
+      href={card.href}
+      imageUrl={card.imageUrl}
+    />
+  </div>
+  <div class="group">
+    <h6>CARD 17</h6>
+    <CardServices17
+      title={card.service}
+      content={card.content}
+      href={card.href}
+      num={"05"}
+    />
+  </div>
+   <div class="group">
+    <h6>CARD 21</h6>
+    <CardServices21
+      title={card.service}
+      content={card.content}
+      href={card.href}
+     icon={GoogleIcon}
+    />
+  </div>
+</div>
+
+<style>
+  .cards-container-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    top: 3rem;
+    left: 0;
+    border: 2px dashed black;
+    overflow-x: scroll;
+  }
+  .group {
+    display: flex;
+    padding: 1.5rem;
+    width: 450px;
+    gap: 1rem;
+    flex-direction: column;
+  }
+  .icon {
+    position: relative;
+    width: 15px;
+    height: 15px;
+    fill: white;
+    z-index: 10;
+  }
+</style>

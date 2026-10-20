@@ -1,0 +1,64 @@
+---
+// src/pages/blog/tag/[slug]/page/[page].astro
+export const prerender = true;
+
+import { getCollection } from "astro:content";
+import LayoutMain from "@/src/layouts/LayoutMain.astro";
+import BlogGrid from "@/src/components/blog/BlogGrid.astro";
+import { getAllPosts } from "@/src/keystatic/getAllPosts";
+import InnerPagesHeroSection from "@/src/pages/_components/sections/InnerPagesHeroSection.astro";
+
+export async function getStaticPaths({ paginate }) {
+  // 1. Вземаме всички "изчистени" постове и всички тагове
+  const allPosts = await getAllPosts();
+  const allTags = await getCollection("tags");
+
+  // Сортираме всички постове по дата първоначално
+  const sortedPosts = allPosts.sort(
+    (a, b) =>
+      new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime(),
+  );
+
+  // 2. Генерираме пагинирани маршрути за всеки таг
+  return allTags.flatMap((tag) => {
+    // Филтрираме постовете за текущия таг
+    const filteredPosts = sortedPosts.filter((post) =>
+      post.tags?.some((t) => t.slug === tag.id),
+    );
+
+    // Връщаме резултата от paginate за съответния слъг
+    return paginate(filteredPosts, {
+      params: { slug: tag.id },
+      pageSize: 6,
+      props: {
+        tag,
+        allUniqueTags: allTags,
+        globalTopPosts: sortedPosts.slice(0, 10), // Глобални топ постове за Aside
+      },
+    });
+  });
+}
+
+const { page, tag, allUniqueTags, globalTopPosts } = Astro.props;
+const { slug } = Astro.params;
+---
+
+<LayoutMain
+  title={`Категория: ${tag.data.title} - Страница ${page.currentPage}`}
+>
+  <Fragment slot="main">
+    <InnerPagesHeroSection
+      title={"Блог"}
+      breadcrumb={`блог | ${tag.data.title} | ${page.currentPage}`}
+    />
+    <BlogGrid
+      posts={page.data}
+      tags={allUniqueTags.map((t) => ({ ...t.data, slug: t.id }))}
+      topPosts={globalTopPosts}
+      activeTag={slug}
+      currentPage={page.currentPage}
+      maxPages={page.lastPage}
+      basePath={`/blog/tag/${slug}`}
+    />
+  </Fragment>
+</LayoutMain>

@@ -1,0 +1,71 @@
+---
+import AddIcon from "./add-icon.astro";
+import CallIcon from "./call-icon.astro";
+import CheckCircleIcon from "./check-circle-icon.astro";
+import CloseIcon from "./close-icon.astro";
+import GoogleReviewIcon from "./google-review-icon.astro";
+import MailIcon from "./mail-icon.astro";
+import MapPinIcon from "./map-pin-icon.astro";
+import Quote from "./quote.astro";
+import QuotesColseIcon from "./quotes-colse-icon.astro";
+import StarIcon from "./star-icon.astro";
+import MenuIcon from "./menu-icon.astro";
+import CalendarIcon from "./calendar-icon.astro";
+import ArrowForwardIconPagination from "./arrow-forward-icon.astro";
+import ArrowBackwardsPaginationIcon from "./arrow-backwards-icon.astro";
+import ArrowUpAccordionIcon from "./arrow-up-accordion-icon.astro";
+import ArrowDownAccordionIcon from "./arrow-down-accordion-icon.astro";
+import GoogleIcon from "./google-icon.astro";
+import FacebookIcon from "./facebook-icon.astro";
+import LinkedinIcon from "./linkedin-icon.astro";
+import YoutubeIcon from "./youtube-icon.astro";
+---
+
+<div class="group" id="icons">
+  <h4>ICONS</h4>
+  <div class="icons-container">
+    <AddIcon class="icon" />
+    <CallIcon class="icon" />
+    <CheckCircleIcon class="icon" />
+    <MenuIcon class="icon" />
+    <CloseIcon class="icon" />
+    <MailIcon class="icon" />
+    <MapPinIcon class="icon" />
+    <Quote class="icon" />
+    <QuotesColseIcon class="icon" />
+    <StarIcon class="icon" />
+    <CalendarIcon class="icon" />
+    <ArrowBackwardsPaginationIcon class="icon" />
+    <ArrowForwardIconPagination class="icon" />
+    <ArrowUpAccordionIcon class="icon" />
+    <ArrowDownAccordionIcon class="icon" />
+    <GoogleReviewIcon class="icon" />
+    <GoogleIcon class="icon" />
+    <FacebookIcon class="icon" />
+    <LinkedinIcon class="icon" />
+    <YoutubeIcon class="icon" />
+  </div>
+</div>
+<style>
+  .group {
+    display: flex;
+    padding: 1.5rem;
+    gap: 1rem;
+    flex-direction: column;
+  }
+  .icons-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem 1rem;
+  }
+  .icon {
+    width: 36px;
+    height: 36px;
+    fill: var(--secondary-dark-1);
+  }
+  .icon:hover {
+    fill: var(--secondary-light-1);
+    cursor: pointer;
+  }
+</style>

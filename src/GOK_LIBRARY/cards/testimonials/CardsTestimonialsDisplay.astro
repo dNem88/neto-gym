@@ -1,0 +1,137 @@
+---
+import CardTestimonials1 from "./card-testimonials-1.astro";
+import CardTestimonials2 from "./card-testimonials-2.astro";
+import CardTestimonials3 from "./card-testimonials-3.astro";
+import CardTestimonials4 from "./card-testimonials-4.astro";
+import CardTestimonials5 from "./card-testimonials-5.astro";
+import CardTestimonials6 from "./card-testimonials-6.astro";
+import CardTestimonials7 from "./card-testimonials-7.astro";
+import CardTestimonials8 from "./card-testimonials-8.astro";
+import Avatar from '../../../../assets/avatar.webp'
+
+const card = {
+            name: 'Александър Петков',
+            age: '48',
+            avatarUrl: '/src/assets/avatar.webp',
+            city: 'Плевен',
+            testimonial: "Отлично обслужване! Специалистите от Team Electric ми помогнаха с подмяна на ел. таблото и направиха всичко по най-сигурния начин. Обясниха ясно какво трябва да се извърши и работиха бързо и качествено."
+        };
+// console.log(Meeting);
+---
+
+<h4>TESTIMONIALS CARDS</h4>
+<div class="cards-container-row" id="testimonials-cards">
+     <div class="group">
+     <h6>CARD 1</h6>
+    <CardTestimonials1
+      name={card.name}
+      age={card.age}
+      city={card.city}
+      avatarUrl={Avatar}
+      testimonial={card.testimonial}
+    />
+  </div>
+  <div class="group">
+    <h6>CARD 2</h6>
+    <CardTestimonials2
+      name={card.name}
+      age={card.age}
+      city={card.city}
+      avatarUrl={Avatar}
+      testimonial={card.testimonial}
+    />
+  </div>
+    <div class="group">
+     <h6>CARD 3</h6>
+    <CardTestimonials3
+      name={card.name}
+      age={card.age}
+      city={card.city}
+      avatarUrl={Avatar}
+      testimonial={card.testimonial}
+    />
+  </div>
+  
+  <div class="group">
+    <h6>CARD 4</h6>
+    <CardTestimonials4
+      name={card.name}
+      age={card.age}
+      city={card.city}
+      avatarUrl={Avatar}
+      testimonial={card.testimonial}
+    />
+  </div>
+   <div class="group">
+     <h6>CARD 5</h6>
+    <CardTestimonials5
+      name={card.name}
+      age={card.age}
+      city={card.city}
+      avatarUrl={Avatar}
+      testimonial={card.testimonial}
+    />
+   
+  </div>
+  <div class="group">
+      <h6>CARD 6</h6>
+    <CardTestimonials6
+      name={card.name}
+      age={card.age}
+      city={card.city}
+      avatarUrl={Avatar}
+      testimonial={card.testimonial}
+    />
+  </div>
+  <div class="group">
+      <h6>CARD 7</h6>
+    <CardTestimonials7
+      name={card.name}
+      age={card.age}
+      city={card.city}
+      avatarUrl={Avatar}
+      testimonial={card.testimonial}
+    />
+  </div>
+    <div class="group">
+          <h6>CARD 8</h6>
+    <CardTestimonials8
+      name={card.name}
+      age={card.age}
+      city={card.city}
+      avatarUrl={Avatar}
+      testimonial={card.testimonial}
+    />
+  </div>
+   <div class="group">
+    
+  </div>
+</div>
+
+<style>
+  .cards-container-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    top: 3rem;
+    left: 0;
+    border: 2px dashed black;
+    overflow-x: scroll;
+  }
+  .group {
+    display: flex;
+    padding: 1.5rem;
+    width: 450px;
+    gap: 1rem;
+    flex-direction: column;
+  }
+  .icon {
+    position: relative;
+    width: 15px;
+    height: 15px;
+    fill: white;
+    z-index: 10;
+  }
+</style>

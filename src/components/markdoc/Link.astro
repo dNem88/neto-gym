@@ -1,0 +1,21 @@
+---
+import styles from './BlogTypography.module.css';
+
+interface Props {
+  href: string;
+  title?: string;
+}
+
+const { href, title } = Astro.props;
+const isExternal = href.startsWith('http');
+---
+
+<a 
+  href={href}
+  title={title}
+  target={isExternal ? '_blank' : undefined}
+  rel={isExternal ? 'noopener noreferrer' : undefined}
+  class={styles.link}
+>
+  <slot />
+</a>

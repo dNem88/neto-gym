@@ -1,0 +1,253 @@
+---
+import Logo from "./logo.astro";
+const links = [
+  { content: "дизайн1", href: "/template1" },
+  { content: "дизайн2", href: "/template2" },
+  { content: "дизайн3", href: "/template3" },
+  { content: "дизайн4", href: "/template4" },
+  { content: "дизайн5", href: "/template5" },
+  { content: "дизайн6", href: "/template6" },
+  { content: "дизайн7", href: "/template7" },
+  { content: "дизайн8", href: "/template8" },
+];
+---
+
+<footer class="layout">
+  <div class="wrapper">
+    <div class="navigation-container">
+      <div class="logo-container">
+       <Logo/>
+      </div>
+      <div class="links-wrapper">
+        <div class="links-container">
+        
+          {
+            links.map((x, i) => {
+              return (
+                <a href={`${x.href}`} class="footer-link">
+                  {x.content}
+                </a>
+              );
+            })
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="copyright-container">
+      <p
+        class="footer-link"
+        
+      >
+        @GOK STUDIO
+    </p>
+      <a href={"/privacy-policy"} class="footer-link">
+        {"политика за поверителност"}
+      </a>
+      <a href={"/cookie-policy"} class="footer-link">
+        {"политика за бисквитки"}
+      </a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* Base Styles for Footer */
+  /*Layout*/
+  .layout {
+    box-sizing: border-box;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary-dark-1);
+  }
+  @media screen and (min-width: 1200px) {
+    /* Styles for large devices */
+    .layout {
+      flex-direction: row;
+      width: 100vw;
+      border-top: 0.1px solid var(--secondary-main-1);
+    }
+  }
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  /*LG  Large Devices (Desktops, 1200px and up) */
+  @media screen and (min-width: 1200px) {
+    /* Styles for large devices */
+    .wrapper {
+      width: 60vw;
+    }
+  }
+
+  /*Navigation Part (Logo + Links Container)*/
+  .navigation-container {
+    width: calc(100vw - 2rem);
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    border-bottom: 0.5px solid white;
+  }
+  @media screen and (min-width: 1200px) {
+    .navigation-container {
+      width: 60vw;
+      flex-direction: row;
+      width: 60vw;
+      gap: 0;
+    }
+  }
+  .links-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+  }
+  @media screen and (min-width: 1200px) {
+    .links-wrapper {
+      width: 40vw;
+
+      align-items: flex-end;
+      gap: 0;
+    }
+  }
+
+  /*FooterLinks Component*/
+  .links-container {
+    display: flex;
+    gap: 2rem; /* Using rem for spacing between links */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  @media screen and (min-width: 1200px) {
+    .links-container {
+      width: fit-content;
+      flex-direction: row;
+      justify-content: flex-end;
+      padding-right: 1rem;
+    }
+  }
+  /*SocialLinks Component*/
+  .social-links-container {
+    display: flex;
+    gap: 2rem; /* Using rem for spacing between links */
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid white;
+    border-radius: 50%;
+  }
+
+  .icon {
+    color: white;
+  }
+
+  .social-link:hover {
+    background-color: white;
+  }
+
+  .social-link:hover .icon {
+    color: rgb(184, 60, 60);
+    background-color: white;
+    transition: color 0.5s ease;
+  }
+
+  /*PrivacyPolicy link + Copyright */
+  .copyright-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1.5rem;
+  }
+  @media screen and (min-width: 1200px) {
+    .copyright-container {
+      flex-direction: row;
+      gap: 4rem;
+    }
+  }
+
+  /*LOGO*/
+  .logo-container {
+    width: 200px;
+    height: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo {
+    width: 64px;
+    height: 64px;
+  }
+  /*LG  Large Devices (Desktops, 1200px and up) */
+  @media screen and (min-width: 1200px) {
+    /* Styles for large devices */
+    .logo {
+      width: 64px;
+      height: 64px;
+    }
+  }
+
+  /*Footer Links on Mobile*/
+  .footer-link {
+    width: fit-content;
+    display: flex;
+    flex-wrap: nowrap;
+
+    color: white;
+    font-weight: 400;
+    position: relative; /* To position the ::after pseudo-element */
+    text-decoration: underline; /* Remove default underline */
+    text-underline-offset: 5px;
+  }
+  /*LG  Large Devices (Desktops, 1200px and up) */
+  @media screen and (min-width: 1200px) {
+    /* Styles for large devices */
+    .footer-link {
+      text-decoration: none; /* Remove default underline */
+    }
+  }
+
+  /*LG  Large Devices (Desktops, 1200px and up) */
+  @media screen and (min-width: 1200px) {
+    /* Styles for large devices */
+    .footer-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 3px; /* Match text-decoration-thickness */
+      background-color: white; /* Match text-decoration-color */
+      transition: width 0.3s ease; /* Animate width over 1 second */
+    }
+  }
+  /*LG  Large Devices (Desktops, 1200px and up) */
+  @media screen and (min-width: 1200px) {
+    /* Styles for large devices */
+    .footer-link:hover::after {
+      width: 100%; /* Expand the underline to full width */
+    }
+  }
+</style>

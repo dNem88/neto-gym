@@ -1,0 +1,80 @@
+---
+// src/components/JsonLd.astro
+const { 
+  title, 
+  description, 
+  url, 
+  type = "WebPage",
+  datePublished,
+  authorName,
+  image 
+} = Astro.props;
+
+// 1. Basic WebPage Schema (Every page)
+const baseSchema = {
+  "@context": "https://schema.org",
+  "@type": type,
+  "name": title,
+  "description": description,
+  "url": url,
+  "inLanguage": "bg-BG"
+};
+
+// 2. BlogPosting Schema (Sanity Posts)
+const blogSchema = type === "BlogPosting" ? {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": description,
+  "image": image,
+  "datePublished": datePublished,
+  "author": { "@type": "Person", "name": authorName || "GOK Studio" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "GOK Studio",
+    "logo": { "@type": "ImageObject", "url": "https://website.com/favicon.svg" }
+  }
+} : null;
+
+// 3. Service Schema (For /uslugi/ and /ceni/ pages)
+const isService = url.includes('/uslugi/') || url.includes('/ceni/');
+const serviceSchema = isService ? {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": title,
+  "provider": { 
+    "@type": "LocalBusiness",
+     "name": "GOK Studio" ,
+     "image": "https://website.com/graph.webp",
+     "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "София", // Град
+      "addressCountry": "BG"      // Държава
+    },
+    
+    },
+  "description": description,
+  "areaServed": { "@type": "Country", "name": "Bulgaria" }
+} : null;
+
+// 4. Automatic Breadcrumbs (Builds path from URL)
+const pathSegments = new URL(url).pathname.split('/').filter(Boolean);
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Начало", "item": "https://website.com/" },
+    ...pathSegments.map((segment, index) => ({
+      "@type": "ListItem",
+      "position": index + 2,
+      "name": segment.replace(/-/g, ' '),
+      "item": `https://website.com/${pathSegments.slice(0, index + 1).join('/')}/`
+    }))
+  ]
+};
+
+// Combine all non-null schemas into one array
+const schemas = [baseSchema, blogSchema, serviceSchema, breadcrumbSchema].filter(Boolean);
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schemas)} />

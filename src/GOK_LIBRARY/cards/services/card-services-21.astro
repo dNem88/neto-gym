@@ -1,0 +1,124 @@
+---
+const { service, content, icon: Icon, classname, href } = Astro.props;
+---
+
+<div class={`card ${classname}`}>
+  {Icon && <Icon class="card-icon" />}
+
+  <div class="content-container">
+    <p
+      class={"body2 title"}
+      style={{
+        fontWeight: "700",
+        textAlign: "center",
+      }}
+    >
+      {service}
+    </p>
+    <p
+      class={"body3 text"}
+      style={{
+        fontWeight: "350",
+        textAlign: "center",
+      }}
+    >
+      {content}
+    </p>
+  </div>
+  <span class="moving-span"></span>
+  <a class="link" href={href}>{"научете повече"}</a>
+</div>
+
+<style>
+  .card {
+    position: relative;
+    background-color: white;
+    width: min(100%, 350px);
+    border-radius: 16px;
+    aspect-ratio: 1/1;
+    box-sizing: border-box;
+
+    scale: 1;
+    transition:
+      scale 0.5s ease,
+      background-color 0.5s ease,
+      fill 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 4px 4px 10px rgb(221, 221, 221);
+    gap: 1rem;
+  }
+  .card-icon {
+    fill: var(--primary-main-1);
+    z-index: 10;
+    width: 75px;
+    height: 75px;
+  }
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    flex-grow: 1;
+    z-index: 10;
+  }
+
+  .link {
+    color: var(--secondary-main-1);
+    z-index: 5;
+  }
+  .link:hover {
+    text-decoration: underline;
+  }
+  .title{
+       color: var(--secondary-dark-1);
+    text-align: center;
+    font-weight: 450;
+  }
+  .text {
+    color: black;
+    text-align: center;
+  }
+  .moving-span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background-color: var(--secondary-dark-1);
+    z-index: 1;
+     border-radius: 16px;
+    transition: height 0.5s ease;
+  }
+  .card:hover {
+    scale: 1.05;
+    .text{
+      color: white;
+    }
+    .title{
+      color: white;
+    }
+    .card-icon{
+      fill: white;
+      transition: fill 0.5s ease;
+    }
+    .link{
+      color: rgb(170, 170, 170);
+      transition: color .5s ease;
+    }
+    .moving-span {
+      height: 100%;
+      transition:
+        height 0.5s ease,
+        width 0.5s ease;
+        
+    }
+  }
+  
+</style>

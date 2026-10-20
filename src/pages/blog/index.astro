@@ -1,0 +1,42 @@
+---
+export const prerender = true; 
+import LayoutMain from "@/src/layouts/LayoutMain.astro";
+import BlogGrid from "@/src/components/blog/BlogGrid.astro";
+import InnerPagesHeroSection from "../_components/sections/InnerPagesHeroSection.astro";
+import { getAllPosts } from "@/src/keystatic/getAllPosts";
+const PAGE_SIZE = 6;
+const page = 1;
+const allPosts = await getAllPosts();
+
+const tags = [];
+allPosts.forEach(post => {
+  if (post.tags) {
+    post.tags.forEach(tag => {
+      if (!tags.find(t => t.slug === tag.slug)) {
+        tags.push(tag);
+      }
+    });
+  }
+});
+const posts = allPosts.slice(0, PAGE_SIZE);
+const maxPages = Math.ceil(allPosts.length / PAGE_SIZE);
+---
+
+<LayoutMain title="Блог" description="Последни статии от Блога" keywords="Блог">
+  <Fragment slot="main">
+    <InnerPagesHeroSection
+      title="Блог"
+      breadcrumb="daniel-nemski"
+    />
+    <BlogGrid
+      posts={posts}
+      topPosts={allPosts}
+      tags={tags}
+      activeTag="all"
+      currentPage={page}
+      maxPages={maxPages}
+      basePath="/blog"
+    />
+
+  </Fragment>
+</LayoutMain>

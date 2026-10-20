@@ -1,0 +1,74 @@
+---
+const { 
+  sx, 
+  sxTitle, 
+  sxContent, 
+  classnameTitle = "", 
+  classnameCardsContainer = "", 
+  classnameButtonsContainer = "", 
+  classnameLayout = "" 
+} = Astro.props;
+---
+
+<section 
+  class={`layout-3cards ${classnameLayout}`} 
+  style={sx}
+>
+  <div class={`title-container ${classnameTitle}`} style={sxTitle}> 
+    <slot name="title" />
+  </div>
+
+  <div class={`cards-container ${classnameCardsContainer}`} style={sxContent}>
+    <slot name="cards" />
+  </div>
+
+  <div class={`button-container ${classnameButtonsContainer}`}>
+    <slot name="button" />
+  </div>
+
+  <slot name="decoration" />
+</section>
+
+<style>
+
+/*Layout3cards*/
+.layout-3cards{
+    position: relative;
+    width: 100vw;
+    padding: 1rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding-top: clamp(2rem, 4vw + 1rem, 5rem);
+    flex-direction: column;
+    padding-bottom: 10rem;
+    gap: 5rem;
+}
+/*children containers*/
+.title-container{
+    display: flex;
+    z-index: 15;
+    justify-content: center;
+}
+.cards-container{
+    width: min(100%, 1400px);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    z-index: 15;
+    gap: 2rem ;
+}
+@media screen and (min-width: 600px)  {
+    .cards-container{
+        align-items: stretch;
+    }
+}
+.button-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+</style>

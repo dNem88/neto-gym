@@ -1,0 +1,54 @@
+---
+// src/components/ConsentManager.astro
+---
+<link 
+  rel="preload" 
+  as="style" 
+  href="/consent-manager/silktide-consent-manager.css" 
+  onload="this.onload=null;this.rel='stylesheet'" 
+/>
+<noscript>
+  <link rel="stylesheet" href="/consent-manager/silktide-consent-manager.css" />
+</noscript>
+
+<script is:inline src="/consent-manager/silktide-consent-manager.js" defer></script>
+
+<script is:inline>
+  (function() {
+    const initConsent = () => {
+      if (window.silktideCookieBannerManager) {
+        window.silktideCookieBannerManager.updateCookieBannerConfig({
+          background: { showBackground: false },
+          cookieIcon: { position: "bottomLeft" },
+          cookieTypes: [
+            {
+              id: "essential",
+              name: "Сигурност и Функционалност",
+              description: "<p>Използваме само технически необходими бисквитки за защита от ботове (Cloudflare Turnstile) и сигурност.</p>",
+              required: true,
+              defaultValue: true
+            }
+          ],
+          text: {
+            banner: {
+              description: "<p>Този сайт използва единствено необходими бисквитки за сигурност и защита. <a href='/cookie-policy'>Научете повече</a></p>",
+              acceptAllButtonText: "Разбрах",
+              rejectNonEssentialButtonText: "Откажи незадължителните", // Hide as there's nothing to reject
+              preferencesButtonText: "Детайли"
+            }
+          }
+        });
+      } else {
+        // If the deferred script isn't ready yet, try again in 100ms
+        setTimeout(initConsent, 100);
+      }
+    };
+
+    // Initialize when browser is idle to protect LCP
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(initConsent);
+    } else {
+      window.addEventListener('load', initConsent);
+    }
+  })();
+</script>

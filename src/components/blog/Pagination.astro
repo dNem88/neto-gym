@@ -1,0 +1,99 @@
+---
+const { currentPage, maxPages, basePath } = Astro.props; 
+
+const prevPage = currentPage > 1 
+  ? (currentPage === 2 ? `${basePath}` : `${basePath}/page/${currentPage - 1}`) 
+  : null;
+
+const nextPage = currentPage < maxPages 
+  ? `${basePath}/page/${currentPage + 1}` 
+  : null;
+import ArrowBackwardsIcon from "@/src/GOK_LIBRARY/icons/arrow-backwards-icon.astro";
+import ArrowForwardIcon from "@/src/GOK_LIBRARY/icons/arrow-forward-icon.astro";
+---
+<div class="pagination"> {/* PREVIOUS BUTTON */}
+  {prevPage ? (
+    <a href={prevPage} class="pagination-circle">
+      <ArrowBackwardsIcon class="arrow-icon" />
+    </a>
+  ) : (
+    <div class="pagination-circle disabled">
+      <ArrowBackwardsIcon class="arrow-icon" />
+    </div>
+  )}
+
+  {/* CURRENT PAGE NUMBER */}
+  <div class="page-number active">
+    <p>{currentPage}</p>
+  </div>
+
+  {/* NEXT BUTTON */}
+  {nextPage ? (
+    <a href={nextPage} class="pagination-circle">
+      <ArrowForwardIcon class="arrow-icon" />
+    </a>
+  ) : (
+    <div class="pagination-circle disabled">
+      <ArrowForwardIcon class="arrow-icon" />
+    </div>
+  )}
+</div>
+
+<style>
+  .pagination {
+    position: absolute;
+    left: 50%;
+    bottom: -100px;
+    transform: translate(-50%, 0);
+    width: min(100%, 350px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .pagination-circle, .page-number {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 4px rgb(160, 160, 160);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  /* Active/Inactive state styling */
+  .active {
+    background-color: #000;
+    color: #fff;
+    cursor: default;
+  }
+
+  .disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  /* Hover effect only for links that aren't disabled */
+  .pagination-circle:hover:not(.disabled) {
+    background-color: black;
+  }
+
+  /* This ensures the SVG changes color on hover */
+  .pagination-circle:hover:not(.disabled) .arrow-icon {
+    fill: white;
+  }
+
+  .arrow-icon {
+    width: 24px;
+    height: 24px;
+    fill: rgba(0, 0, 0, 0.6);
+    transition: fill 0.2s ease;
+  }
+</style>

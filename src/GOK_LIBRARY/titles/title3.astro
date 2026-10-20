@@ -1,0 +1,121 @@
+---
+const { label, title, align = "center", variant = "dark" } = Astro.props;
+const containerClass = `title3-container-${align}`;
+const lineClass = `line3${align}`;
+const titleVariantClass = `title-${variant}`;
+---
+
+<div class={`reveal-left ${containerClass}`} data-align={align}>
+  <div class={lineClass}></div>
+
+  <p class="label-text">
+    {label}
+  </p>
+
+  <h2 class={`title-text ${titleVariantClass} h4`}>
+    {title}
+  </h2>
+</div>
+
+<script>
+  const observerOptions = {
+    threshold: 0.2,
+    rootMargin: "0px 0px -50px 0px", // Triggers slightly before reaching view
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Initialize all Title3 components
+  document.querySelectorAll(".reveal-left").forEach((el) => {
+    observer.observe(el);
+  });
+</script>
+
+<style>
+  /* Initial State: Off-screen to the left and invisible */
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition:
+      opacity 0.8s ease-out,
+      transform 0.8s cubic-bezier(0.17, 0.55, 0.55, 1);
+    display: flex;
+    flex-direction: column;
+    width: min(100%, 650px);
+   
+  }
+
+  /* Active State: Slides into original position */
+  .reveal-left.active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Styles based on alignment prop */
+  .title3-container-center {
+    align-items: center;
+    text-align: center;
+  }
+  .title3-container-left {
+    align-items: flex-start;
+    text-align: left;
+  }
+  .title3-container-right {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .label-text {
+    color: var(--primary-main-1);
+  
+  }
+
+  .title-text {
+    width: min(100%, 700px);
+  }
+
+  .title-dark {
+    color: var(--secondary-dark-1, #000);
+  }
+  .title-light {
+    color: #fff;
+  }
+
+  /* Line styling (placeholder for your specific CSS) */
+  .line3center {
+    position: absolute;
+    width: min(50%, 350px);
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-main-1), transparent);
+    bottom: 16px;
+    left: 50%;
+    transform: translate(-50%, 0);
+   
+    /* clip-path: polygon(0% 0%, 100% 0%, 0% 100%); */
+  }
+  .line3left {
+    position: absolute;
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-main-1), transparent);
+     bottom: 16px;
+    left: 0;
+    clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+  }
+  .line3right {
+    position: absolute;
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(90deg,  transparent, var(--primary-main-1));
+     bottom: 16px;
+    right: 0;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
+  }
+</style>

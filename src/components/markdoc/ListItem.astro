@@ -1,0 +1,14 @@
+---
+import styles from './BlogTypography.module.css';
+
+interface Props {
+  ordered?: boolean;
+}
+
+const { ordered = false } = Astro.props;
+const className = ordered ? styles['number-list-item'] : styles['bullet-list-item'];
+---
+
+<li class={className}>
+  <slot />
+</li>

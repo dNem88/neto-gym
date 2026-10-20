@@ -1,0 +1,122 @@
+---
+const { post } = Astro.props;
+let { publishedAt, title, mainImageUrl, author, excerpt, slug } = post;
+import Button1 from "../../buttons/button1.astro";
+import { Image } from "astro:assets";
+// console.log(mainImageUrl)
+---
+
+<div class="card">
+  {
+    mainImageUrl && (
+      typeof mainImageUrl === "string" ? (
+        <img src={mainImageUrl} alt={title} class="main-image" loading="lazy" />
+      ) : (
+        /* Ensure src is the object itself */
+        <Image src={mainImageUrl} alt={title} class="main-image" />
+      )
+    )
+  }
+ 
+  <div class="text-content">
+    <p
+      class="body3"
+      style={{
+        fontWeight: "350",
+        color: "grey",
+      }}
+    >
+      {`${publishedAt?.split("T")[0]}`}
+    </p>
+    <p class="body3 title">
+      {title}
+    </p>
+   
+  </div>
+  <Button1
+    className="button1"
+    variant="primary"
+    href={slug ? `/blog/${slug}` : "/slug-to-blog-post"}
+    content={"Прочетете повече"}
+  />
+
+</div>
+
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    width: min(100%, 330px);
+    /* Remove fixed aspect-ratio to let content dictate height, 
+       or use min-height for consistency */
+    min-height: 400px; 
+    background-color: white;
+    overflow: hidden;
+    /* Soft, multi-layered shadow */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .main-image {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Professional standard for blog headers */
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+
+  .text-content {
+    padding: 1.5rem; /* More generous padding */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-grow: 1;
+  }
+
+  .date {
+    font-size: 0.85rem;
+    color: #64748b; /* Slate gray */
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+
+  .title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #1e293b;
+    margin: 0;
+    /* Limit to 3 lines max for visual consistency in rows */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .link {
+    padding: 0 1.5rem 1.5rem;
+    color: var(--secondary-main-1);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s ease;
+  }
+
+  /* Hover States */
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+
+  .card:hover .link {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+ 
+</style>

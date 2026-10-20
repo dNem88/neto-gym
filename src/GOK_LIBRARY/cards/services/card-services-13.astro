@@ -1,0 +1,98 @@
+---
+const { service, content, icon: Icon, classname, href } = Astro.props;
+
+---
+
+<div class={`card13 ${classname}`}>
+  <div class="icon-container13">
+    {Icon && <Icon class="card-icon" />}
+  </div>
+
+  <div class="content-container13">
+    <p
+      class={"body1 text13"}
+      style={{
+        fontWeight: "700",
+        textAlign: "left",
+      }}>{service}</p
+    >
+    <p
+      class={"body2 text13"}
+      style={{
+        fontWeight: "450",
+        textAlign: "left",
+      }}>{content}</P
+    >
+  </div>
+
+  <a class="link13" href={href}>{"научете повече"}</a>
+</div>
+
+<style>
+ .card13 {
+    position: relative;
+    border-radius: 32px;
+    width: min(100%, 400px);
+    min-height: 400px;
+    box-sizing: border-box;
+    background-color: white;
+    scale: 1;
+    transition:
+      scale 0.5s ease,
+      background-color 0.5s ease,
+      fill 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    cursor: pointer;
+    align-items: flex-start;
+    justify-content: center;
+    box-shadow: 4px 4px 10px rgb(221, 221, 221);
+    gap: 1rem;
+  }
+  .icon-container13 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background-color: var(--primary-light-1);
+  }
+  .card-icon{
+    fill: white;
+   
+  }
+  .content-container13 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    flex-grow: 1;
+    z-index: 10;
+  }
+
+  .link13 {
+    color: var(--primary-main-1);
+  }
+  .link13:hover{
+    text-decoration: underline;
+  }
+  .text13 {
+    color: var(--secondary-dark-1);
+    text-align: center;
+  }
+
+  .card13:hover {
+    scale: 1.05;
+    background-color: var(--secondary-dark-1);
+    .text13 {
+      color: white !important;
+    }
+    .card-icon{
+      fill:var(--secondary-dark-1);
+    }
+  }
+</style>

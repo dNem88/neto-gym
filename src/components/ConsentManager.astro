@@ -1,0 +1,95 @@
+---
+//Използвай само ако има аналитика и маркетинг
+// src/components/ConsentManager.astro
+---
+
+<link 
+  rel="preload" 
+  as="style" 
+  href="/consent-manager/silktide-consent-manager.css" 
+  onload="this.onload=null;this.rel='stylesheet'" 
+/>
+<noscript>
+  <link rel="stylesheet" href="/consent-manager/silktide-consent-manager.css" />
+</noscript>
+
+<script is:inline src="/consent-manager/silktide-consent-manager.js" defer></script>
+
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+
+  function handleConsentLog(action, categories) {
+    fetch('/api/consentLog', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action,
+        categories,
+        timestamp: new Date().toISOString(),
+      }), 
+    }).catch(err => console.error('Consent Log Error:', err));
+  }
+
+  // Initialize once the library is loaded
+  window.addEventListener('DOMContentLoaded', () => {
+    if (window.silktideCookieBannerManager) {
+      window.silktideCookieBannerManager.updateCookieBannerConfig({
+        background: { showBackground: true },
+        cookieIcon: { position: "bottomLeft" },
+        cookieTypes: [
+          {
+            id: "essential",
+            name: "Необходими",
+            description: "<p>Тези бисквитки са необходими за правилното функциониране на уебсайта и не могат да бъдат изключени. Те помагат за неща като влизане в системата и задаване на вашите предпочитания за поверителност..</p>",
+            required: true,
+            onAccept: () => handleConsentLog('accept', ['essential'])
+          },
+          {
+            id: "analytic",
+            name: "Аналитични",
+            description: "<p>Тези бисквитки ни помагат да подобрим уебсайта, като проследяват кои страници са най-популярни и как посетителите се придвижват из сайта.</p>",
+            required: false,
+            onAccept: () => {
+              if (window.gtag) window.gtag('consent', 'update', { analytics_storage: 'granted' });
+              handleConsentLog('accept', ['analytic']);
+            },
+            onReject: () => {
+              if (window.gtag) window.gtag('consent', 'update', { analytics_storage: 'denied' });
+              handleConsentLog('reject', ['analytic']);
+            }
+          },
+          {
+            id: "marketing",
+            name: "Маркетинг",
+            description: "<p>Тези бисквитки осигуряват допълнителни функции и персонализация, за да подобрят вашето изживяване. Те могат да бъдат зададени от нас или от наши партньори, чиито услуги използваме.</p>",
+            required: false,
+            onAccept: () => {
+              if (window.gtag) {
+                window.gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+              }
+              handleConsentLog('accept', ['marketing']);
+            },
+            onReject: () => {
+              if (window.gtag) {
+                window.gtag('consent', 'update', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+              }
+              handleConsentLog('reject', ['marketing']);
+            }
+          }
+        ],
+        text: {
+          banner: {
+            description: "<p>Използваме бисквитки на нашия сайт... <a href='/cookie-policy'>Политика за бисквитките</a></p>",
+            acceptAllButtonText: "Приеми всички",
+            rejectNonEssentialButtonText: "Откажи незадължителните",
+            preferencesButtonText: "Покажи детайли"
+          },
+          preferences: {
+            title: "Персонализирайте своите предпочитания",
+            description: "<p>Ние уважаваме вашето право на поверителност. Можете да изберете да не позволявате някои видове бисквитки. Вашите предпочитания за бисквитки ще се прилагат за целия ни уебсайт.</p>"
+          }
+        }
+      });
+    }
+  });
+</script>

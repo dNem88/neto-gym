@@ -1,0 +1,68 @@
+---
+const { tags, activeTag = "all" } = Astro.props;
+// console.log(tags, 'inside category selector')
+---
+<section class="category-container-1">
+  <a 
+    href="/blog" 
+    class:list={["category-label-1","body4", { "active": activeTag === "all" }]}
+  >
+    Всички
+  </a>
+  
+  {tags?.map((tag) => (
+    <a
+      href={`/blog/tag/${tag.slug}`}
+      class:list={[
+        "category-label-1", "body4",
+        { "active": activeTag === tag.slug }
+      ]}
+      style={{ fontWeight: activeTag === tag.slug ? "bold" : "normal" }}
+    >
+      {tag.title || 'неизвестна-категория'}
+    </a>
+  ))}
+</section>
+
+<style>
+  /* Клас за активен таг (добавяме го, тъй като го ползваш в class:list) */
+  .active {
+    background-color: var(--secondary-main-1) !important;
+    border: 1px solid var(--secondary-main-1) !important;
+    color: white !important;
+  }
+
+  .category-container-1 {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* gap: 16px; */
+    padding: 1.5rem;
+  } 
+
+  .category-label-1 {
+    width: fit-content;
+    padding: 10px 20px;
+    border-radius: 24px;
+    border: 1px solid white;
+    background-color: white;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none; /* Премахваме подчертаването на линковете */
+    color: black;
+  }
+
+  .category-label-1:hover {
+    background-color: var(--secondary-main-1);
+    border: 1px solid var(--secondary-main-1);
+    color: white;
+    transform: scale(1.025); /* По-добре е transform за scale */
+  }
+
+  /* ... останалите ти стилове ... */
+</style>

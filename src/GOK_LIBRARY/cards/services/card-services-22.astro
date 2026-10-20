@@ -1,0 +1,132 @@
+---
+const { title, content, icon: Icon, classname, href } = Astro.props;
+---
+
+<div class={`card ${classname}`}>
+    <div class="icon-container">
+        {Icon && <Icon class="card-icon" />}
+
+    </div>
+
+  <div class="content-container">
+    <p
+      class={"body2 title"}
+      style={{
+        fontWeight: "700",
+        textAlign: "left",
+      }}
+    >
+      {title}
+    </p>
+    <p
+      class={"body3 text"}
+      style={{
+        fontWeight: "350",
+        textAlign: "left",
+      }}
+    >
+      {content}
+    </p>
+  </div>
+  <span class="hover-span"></span>
+  <a class="link" href={href}>{"научете повече"}</a>
+</div>
+
+<style>
+  .card{
+  position: relative;
+  border-radius: 32px;
+  width: min(100%, 400px);
+  min-height: 400px;
+  box-sizing: border-box;
+  background-color: white;
+  scale: 1;
+  transition: scale .5s ease, background-color .5s ease, fill .5s ease;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  cursor: pointer;
+  align-items: flex-start;
+  justify-content: center;
+  box-shadow: 4px 4px 10px rgb(221, 221, 221);
+  gap: 1rem;
+  
+  
+  
+}
+.icon-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-color: var(--primary-light-1);
+  z-index: 10;
+}
+.card-icon{
+    fill: white;
+    width: 36px;
+    height: 36px;
+}
+.content-container{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  flex-grow: 1;
+  z-index: 10;
+}
+
+.link{
+      color: var(--primary-main-1);
+      font-weight: 550;
+      z-index: 10;
+  }
+.title{
+color: var(--secondary-dark-1);
+text-align: left;
+}
+.text{
+color: var(--secondary-dark-1);
+text-align: left;
+}
+
+.card:hover{
+    scale: 1.05;
+    .icon-container{
+      background-color: var(--primary-light-1);
+      transition: background-color .5s ease;
+      
+    }
+    .card-icon{
+      fill: var(--secondary-dark-1);
+    }
+   .text{
+      color: white !important;
+    } 
+    .hover-span{
+      height: 100%;
+      transition: height .5s ease, width .5s ease;
+    }
+    .link{
+      color: var(--primary-main-1);
+    }
+    .title{
+      color: white;
+    }
+}
+.hover-span{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background-color: var(--secondary-main-1);
+  z-index: 1;
+  border-radius: 32px;
+  transition: height .5s ease;
+}
+</style>

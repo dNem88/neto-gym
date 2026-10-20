@@ -1,0 +1,15 @@
+---
+import styles from './BlogTypography.module.css';
+
+interface Props {
+  level: number;
+}
+
+const { level } = Astro.props;
+const Tag = `h${level}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+const className = styles[`h${level}`];
+---
+
+<Tag class={className}>
+  <slot />
+</Tag>
