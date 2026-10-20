@@ -103,37 +103,37 @@ export const WebsiteContent = {
 
     services: [
         {
-            href: '/netogym/services#section-1',
+            href: "/uslugi/fitnes-trenirovki",
             service: 'Фитнес тренировки',
             content: `Достъп до модерно оборудвана фитнес зала с всичко необходимо за силови и кардио тренировки.`,
             imageUrl: '/template10/gym1.webp'
         },
         {
-            href: '/netogym/services#section-2',
+            href: '/uslugi/personalni-trenirovki',
             service: 'Персонални тренировки',
             content: `Индивидуална програма и внимание от персонален треньор за максимални резултати.`,
             imageUrl: '/template10/gym6.webp'
         },
         {
-            href: '/netogym/services#section-3',
+            href: '/uslugi/funkcionalni-trenirovki',
             service: 'Функционални тренировки',
             content: `Тренировки за сила, баланс и издръжливост, подходящи за всички нива.`,
             imageUrl: '/template10/gym3.webp'
         },
         {
-            href: '/netogym/services#section-4',
+            href: '/uslugi/grupovi-trenirovki',
             service: 'Групови тренировки',
             content: `Забавни и мотивиращи групови сесии, които ви помагат да останете постоянни.`,
             imageUrl: '/template10/gym7.webp'
         },
         {
-            href: '/netogym/services#section-5',
+            href: '/uslugi/onlain-programi',
             service: 'Онлайн програми',
             content: `Персонализирани тренировъчни планове, които можете да следвате от вкъщи или навсякъде.`,
             imageUrl: '/template10/gym5.webp'
         },
         {
-            href: '/netogym/services#section-6',
+            href: '/uslugi/konsultacii-po-hranene',
             service: 'Консултации по хранене',
             content: `Съвети и планове за хранене, които допълват вашите тренировки и ускоряват резултатите.`,
             imageUrl: '/template10/gym2.webp'

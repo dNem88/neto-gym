@@ -1,14 +1,18 @@
 ---
 import Logo from "./logo.astro";
 const links = [
-  {label: 'Начало',href: '/'},
-  {label: 'Услуги',href: '/uslugi'}, 
- {label: 'Аварийни ремонти',href: '/uslugi/avariini-remonti'},
-    {label: 'Изграждане на електроинсталации',href: '/uslugi/izgrajdane-na-electroinstalacii'},
-    {label: 'Монтаж на осветление и електрически уреди',href: '/uslugi/montazh-na-osvetlenie-i-elektlicheski-uredi'},
- {label: 'За нас',href: '/za-nas'},
-    {label: 'Блог',href: '/blog'},
-     {label: 'Контакти',href: '/kontakti'},
+  { label: "Начало", href: "/" },
+
+  { label: "фитнес тренировки", href: "/uslugi/fitnes-trenirovki" },
+  { label: "персонални тренировки", href: "/uslugi/personalni-trenirovki" },
+  { label: "функционални тренировки", href: "/uslugi/funkcionalni-trenirovki" },
+  { label: "групови тренировки", href: "/uslugi/grupovi-trenirovki" },
+  { label: "онлайн тренировки", href: "/uslugi/onlain-programi" },
+  { label: "консултации по хранене", href: "/uslugi/konsultacii-po-hranene" },
+
+  { label: "За нас", href: "/za-nas" },
+  { label: "Блог", href: "/blog" },
+  { label: "Контакти", href: "/kontakti" },
 ];
 ---
 
@@ -16,11 +20,10 @@ const links = [
   <div class="wrapper">
     <div class="navigation-container">
       <div class="logo-container">
-       <Logo/>
+        <Logo />
       </div>
       <div class="links-wrapper">
         <div class="links-container">
-        
           {
             links.map((x, i) => {
               return (
@@ -35,12 +38,7 @@ const links = [
     </div>
 
     <div class="copyright-container">
-      <p
-        class="footer-link"
-        
-      >
-        @GOK STUDIO
-    </p>
+      <p class="footer-link">@GOK STUDIO</p>
       <a href={"/privacy-policy"} class="footer-link">
         {"политика за поверителност"}
       </a>
