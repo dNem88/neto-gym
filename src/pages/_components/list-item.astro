@@ -1,0 +1,30 @@
+---
+import CheckCircleIconFilled from "@/src/GOK_LIBRARY/icons/check-circle-icon-filled.astro";
+const {iconStyle, textColor='black'} = Astro.props;
+---
+<div class="list-item">
+  <span  >
+   <CheckCircleIconFilled class="icon" style={iconStyle}/>
+  </span>
+  <span class="text" style={{color: textColor}}><slot /></span>
+</div>
+
+<style>
+  .list-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+   
+  }
+  .icon {
+    fill: var(--primary-main-1);
+    width: 14px;
+    height: 14px;
+  }
+  .text {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: white !important;
+  }
+</style>

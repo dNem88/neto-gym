@@ -1,0 +1,159 @@
+---
+
+const links = [
+    {label: 'Начало',href: '/template10'},
+    {label: 'Услуги',href: '/template10/uslugi',sublinks: [
+        {label: 'Услугa8',href: '/template10/usluga'},
+        {label: 'Услугa8',href: '/template10/usluga'},
+        {label: 'Услугa8',href: '/template10/usluga'},
+    ]},
+    {label: 'Услугa',href: '/template10/usluga'},
+    {label: 'За нас',href: '/template10/za-nas'},
+    {label: 'Блог',href: '/template10/blog'},
+     {label: 'Контакти',href: '/template10/kontakti'},
+    
+ ]
+---
+
+<div class="desktop-links-container">
+  {links.map((link) => (
+    // If the link has sublinks, render a dropdown div
+    link.sublinks ? (
+      <div class="dropdown">
+        <a href={link.href} class="nav-link dropdown-trigger">
+          {link.label}
+        </a>
+        <ul class="dropdown-menu">
+          {link.sublinks.map((sub) => (
+            <li>
+              <a href={sub.href}>{sub.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ) : (
+      // If no sublinks, render a standard link
+      <a href={link.href} class="nav-link">
+        {link.label}
+      </a>
+    )
+  ))}
+ 
+</div>
+
+<style>
+  /* 1. HIDE BY DEFAULT (Mobile/Tablet) */
+  .desktop-links-container {
+    display: none;
+  }
+
+  /* 2. SHOW ON DESKTOP (1200px and up) */
+  @media screen and (min-width: 1200px) {
+    .desktop-links-container {
+      position: relative;
+      background-color: transparent;
+      height: 100%;
+      display: flex;
+      gap: 0;
+      align-self: center;
+      align-items: center;
+      justify-content: center;
+     
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    /* DROPDOWN LOGIC */
+    .dropdown {
+      position: relative;
+    
+      height: 100%;
+      display: inline-block;
+     
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%; /* Sits right under the 36px container */
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      min-width: 220px;
+      background-color: white;
+      list-style: none;
+      padding: 1rem 0;
+      margin-top: 10px; /* Gap so it doesn't touch the pill immediately */
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+      border-radius: 16px; /* Match the rounded aesthetic */
+      
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+
+    /* Hover Trigger */
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Sub-link Styling */
+    .dropdown-menu li a {
+      display: block;
+      padding: 0.6rem 1.5rem;
+      color: black;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: background 0.2s, color 0.2s;
+      text-align: left;
+    }
+
+    .dropdown-menu li a:hover {
+      background-color: var(--secondary-dark-1);
+      color: white;
+    }
+    
+    /* Optional: The "Bridge" - invisible area so the menu doesn't close when moving mouse down */
+    .dropdown::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 20px;
+    }
+  }
+
+  /* Shared Link Styles */
+  .nav-link {
+    font-weight: 600;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    line-height: 36px; /* Vertically center text */
+    display: flex;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+   color:var(--primary-main-1);
+   padding:0 1.5rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  /* Your Hover Animation (Underline sliding out) */
+
+  .nav-link:hover {
+   
+    background-color: var(--primary-main-1);
+    color: var(--secondary-dark-1);
+  }
+
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

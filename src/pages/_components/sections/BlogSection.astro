@@ -1,0 +1,55 @@
+---
+import Title5 from "@/src/GOK_LIBRARY/titles/title5.astro";
+import SliderAstro from "@/src/components/Common/slider-astro.astro";
+import client from "@/src/sanity/client";
+import CardBlog2 from "@/src/GOK_LIBRARY/cards/blog/card-blog-2.astro";
+import { getAllBlogPosts } from "@/src/sanity/queries";
+const posts = await client.fetch(getAllBlogPosts, {
+  category: "all",
+  page: 1,
+  start: 0,
+  end: 3,
+  limit: 3,
+});
+
+---
+
+<div class="layout-blog">
+  <Title5
+    title='Открийте експертни съвети, задълбочени анализи и свежи перспективи.'
+    variant="light"/>
+  <SliderAstro>
+    {
+      posts.map((post) => (
+        <swiper-slide>
+          <CardBlog2 post={post} />
+        </swiper-slide>
+      ))
+    }
+  </SliderAstro>
+   <div class='filter'></div>
+</div>
+
+<style>
+  .layout-blog {
+    position: relative;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 1rem;
+    background-image: url("/template5/landingpage/team.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+.filter{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: var(--secondary-dark-1);
+  opacity: .95;
+}
+</style>

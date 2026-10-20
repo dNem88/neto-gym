@@ -1,0 +1,169 @@
+---
+import { Pagination } from "./BlogClientComponents";
+import CardBlog2 from "@/src/GOK_LIBRARY/cards/blog/card-blog-2.astro";
+const { posts, links, maxPages } = Astro.props;
+// console.log(posts)
+---
+
+ <div class="section-wrapper">
+      <aside class="aside-section">
+        <div class="categories-list-container">
+          <p class='h6' style={{fontWeight: '550',color: 'var(--primary-main-1)'}}>
+            {"Категории"}
+          </p >
+          <a href='/blog/kategoriq-1' class="category">
+            {"Категория 1"}
+          </a>
+          <a href='/blog/kategoriq-1' class="category">
+            {"Категория 1"}
+          </a>
+          <a href='/blog/kategoriq-1' class="category">
+            {"Категория 1"}
+          </a>
+
+          <a href='/blog/kategoriq-1' class="category">
+            {"Категория 1"}
+          </a>
+
+          <a href='/blog/kategoriq-1' class="category">
+            {"Категория 1"}
+          </a>
+
+          <a href='/blog/kategoriq-1' class="category">
+            {"Категория 1"}
+          </a>
+
+          <a href='/blog/kategoriq-1' class="category">
+            {"Категория 1"}
+          </a>
+
+          <a href='/blog/kategoriq-1' class="category">
+            {"Категория 1"}
+          </a>
+
+          <a href='/blog/kategoriq-1' class="category">
+            {"Категория 1"}
+          </a>
+        </div>
+        <div class="top-posts-container">
+            <p class='h6'  style={{fontWeight: '550', color: 'var(--primary-main-1)' }}>
+            {"Популярни статии"}
+            </p >
+          <a href='/blog/kategoriq-1' class="category">
+            {"Популярна статия 1"}
+          </a>
+          <a href='/blog/kategoriq-1' class="category">
+            {"Популярна статия 1"}
+          </a>
+          <a href='/blog/kategoriq-1' class="category">
+            {"Популярна статия 1"}
+          </a>
+
+          <a href='/blog/kategoriq-1' class="category">
+            {"Популярна статия 1"}
+          </a>
+
+          <a href='/blog/kategoriq-1' class="category">
+            {"Популярна статия 1"}
+          </a>
+
+          <a href='/blog/kategoriq-1' class="category">
+            {"Популярна статия 1"}
+          </a>
+
+          <a href='/blog/kategoriq-1' class="category">
+            {"Популярна статия 1"}
+          </a>
+        </div>
+      </aside>
+      <div class="blog-grid">
+        {posts?.map((post, index) => (
+          <CardBlog2 post={post} />
+        ))}
+        <Pagination maxPages={maxPages || 10}/>
+      </div>
+    </div>
+
+<style>
+  .section-wrapper {
+    position: relative;
+    width: min(100%, 1400px);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+}
+
+
+@media screen and (min-width: 1000px) {
+    .section-wrapper {
+        padding: 1rem;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        justify-content: space-evenly;
+    }
+}
+.aside-section{
+    width: min(100%, 450px);
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    order: 2;
+    gap: 5rem;
+}
+.categories-list-container{
+    width: 90%;
+    padding: 1.5rem;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--secondary-dark-1);
+    gap: 8px;
+}
+.category{
+    width: 100%;
+    text-align: left;
+   
+    color: var(--primary-main-1);
+    text-decoration: none;
+    border-bottom: 1px solid var(--secondary-main-1);
+}
+.category:hover{
+    text-decoration: underline;
+    color: var(--primary-light-1);
+}
+.top-posts-container{
+     width: 90%;
+    padding: 1.5rem;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--secondary-dark-1);
+    gap: 8px;
+}
+.blog-grid {
+    width: min(100%, 950px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem 2rem;
+    order: 1;
+}
+@media screen and (min-width: 1200px) {
+    .aside-section{
+        order: 1;
+    }
+    .blog-grid{
+        order: 2;
+    }
+}
+</style>
+

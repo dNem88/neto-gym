@@ -1,0 +1,182 @@
+---
+import Button1 from "@/src/GOK_LIBRARY/buttons/button1.astro";
+import Label from "../label.astro";
+import TitleTemplate10 from "../title-template-10.astro";
+---
+
+<div class="hero-container10">
+  <picture class="picture">
+    <source
+      media="(max-width: 1200px)"
+      srcset="/template10/hero-desktop.webp"
+    />
+    <source
+      media="(min-width: 1201px)"
+      srcset="/template10/hero-desktop.webp"
+    />
+    <img
+      aria-hidden="true"
+      class="hero-image"
+      loading="eager"
+      decoding="async"
+      src="/template10/hero-desktop.webp"
+      alt="template-5-hero-image"
+      style={{
+        objectFit: "cover",
+        width: "100%",
+        height: "100%",
+        zIndex: 5,
+      }}
+    />
+  </picture>
+  <div class="filter"></div>
+
+  <section class="text-container10">
+    <div class="title-container10">
+      <Label label="фитнес трансформация"/>
+      <TitleTemplate10 title="НEТО ФИТНЕС" variant="light" animation="btt"/>
+     
+      <p
+        class="body1 subtitle10"
+        style={{
+          color: "white",
+          fontWeight: "450",
+        }}
+      >
+        {"Най-доброто място за вашата трансформация"}
+      </p>
+      <Button1
+        variant="secondary"
+        href={"tel:+359890899885"}
+        content={"ЗАПАЗЕТЕ KОНСУЛТАЦИЯ"}
+        sx={{marginTop: '4rem'}}
+      />
+    </div>
+  </section>
+</div>
+
+<style>
+  .hero-container10 {
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    aspect-ratio: 1 / 2;
+    margin-top: 3rem;
+  }
+
+  .filter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      185deg,
+      var(--secondary-dark-1) 25%,
+      transparent 120%
+    );
+    z-index: 5;
+  }
+
+  @media screen and (min-width: 650px) {
+    .hero-container10 {
+      width: 100vw;
+      aspect-ratio: 1/1;
+      margin-top: 3.5rem;
+    }
+
+    .title-container10 {
+      padding: 3rem;
+      gap: 1rem;
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    .hero-container10 {
+      margin-top: 4rem;
+      aspect-ratio: 20 / 9;
+    }
+
+    .filter {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        60deg,
+        var(--secondary-dark-1) 30%,
+        transparent 100%
+      );
+      z-index: 5;
+      opacity: 0.9;
+    }
+  }
+
+  .picture {
+    width: 100%;
+    height: 100%;
+  }
+
+  /*TextContainer*/
+  .text-container10 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 3rem;
+  }
+  .title-container10 {
+    padding-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title10 {
+    color: var(--gray-light);
+    font-weight: 700;
+    line-height: 110%;
+  }
+
+  .subtitle10 {
+    color: white;
+    padding: 0;
+    font-weight: 200;
+  }
+
+  @media screen and (min-width: 1200px) {
+    /* Styles for large devices */
+    .text-container10 {
+      width: 60vw;
+      left: 0;
+      top: 50%;
+
+      transform: translate(0, -50%);
+      padding-left: 15vw;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 0;
+    }
+    .title-container10 {
+      flex-grow: 0;
+      align-items: flex-start;
+      padding-top: 3rem;
+    }
+
+    .subtitle10 {
+      text-align: left;
+    }
+    .title {
+      text-align: left;
+    }
+  }
+</style>

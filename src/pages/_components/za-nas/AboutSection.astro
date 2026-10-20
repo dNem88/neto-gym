@@ -1,0 +1,94 @@
+---
+import TitleTemplate10 from "../title-template-10.astro"
+const {title} = Astro.props
+---
+
+
+<div class="layout-about10" style={{backgroundColor: 'var(--secondary-dark-1)'}}>
+  <div class="content-wrapper">
+    <TitleTemplate10 title={'Екипа ни'} variant="light" align="left" />
+
+    <p class="body1 content-about10">
+      NetoGym е модерен фитнес център, създаден с мисията да помогне на хората да изградят по-здравословен, силен и уверен начин на живот. Нашият фокус е върху ефективните тренировки, професионалното отношение и създаването на среда, в която всеки може да постигне своите цели – независимо дали тепърва започва или вече има опит.
+    </p>
+
+    <p class="body1 content-about10">
+      Още от самото начало NetoGym се отличава с индивидуален подход към всеки клиент. Вярваме, че всеки човек има различни цели, възможности и нужди. Затова предлагаме персонално внимание, професионални съвети и подкрепа през целия тренировъчен процес. Нашата цел не е просто тренировка, а реална и устойчива промяна.
+    </p>
+
+    <div class="picture-container">
+      <div class="image-container">
+        <img
+          class="image"
+          loading="lazy"
+          decoding="async"
+          src="/template10/gym6.webp"
+          alt="NetoGym – фитнес зала и тренировки"
+        />
+      </div>
+    </div>
+
+    <p class="body1 content-about10">
+      NetoGym разполага със съвременно оборудване и функционални тренировъчни зони, които позволяват разнообразни и ефективни тренировки – от силови и кондиционни упражнения до обща физическа подготовка и подобряване на здравословното състояние. Работим с внимание към техниката, безопасността и индивидуалния прогрес.
+    </p>
+
+    <p class="body1 content-about10">
+      Днес NetoGym е място, където хората идват не само да тренират, но и да изградят дисциплина, увереност и по-добра версия на себе си. Нашият ангажимент е да осигурим професионална среда, подкрепа и мотивация, за да постигнете резултатите, които търсите.
+    </p>
+
+  </div>
+</div>
+<style>
+    .layout-about10{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 5rem 1rem;
+}
+
+/*Picture*/
+.picture-container {
+    position: relative;
+    width: min(100%, 1000px);
+    display: flex;
+    
+}
+
+.image {
+    width: min(100%, 1000px);
+    aspect-ratio: 1 / 1;
+    border-radius: 36px;
+    object-fit: cover;
+}
+
+/*TextContainer*/
+.content-wrapper{
+    width: min(100%, 1000px);
+   
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 2rem;
+  
+}
+@media screen and (min-width: 1200px){
+    .content-wrapper{
+        padding: 0;
+    }
+   .image {
+    width: min(100%, 1000px);
+    aspect-ratio: 1 / 0.4;
+    border-radius: 36px;
+    object-fit: cover;
+}
+
+}
+
+.content-about10{
+    font-weight: 300;
+    color: white;
+}
+
+
+</style>

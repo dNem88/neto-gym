@@ -1,0 +1,189 @@
+/*//////////////////////////////////////////////////////////////////////////*/
+    /*Button3*/
+  /*//////////////////////////////////////////////////////////////////////////*/
+  .button3 {
+    position: relative;
+    text-align: center;
+    z-index: 10;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    overflow: hidden;
+    border-radius: 6px;
+    padding: 1rem 3rem;
+    box-sizing: border-box;
+  }
+
+ 
+.span{
+    position: absolute;
+    width: .001px;
+    height: .001px;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1; /* Ensure span is behind text */
+    font-size: 14px;
+  }  
+.content{
+  padding-left: 10px;
+  padding-right: 10px;
+    position: relative;
+    z-index: 4; /* Ensures the text is above the background span */
+    color: inherit; /* Inherit text color */
+  }
+  .button3 > svg{
+    width: 16px;
+    height: 16px;
+    z-index: 10;
+    
+  }
+  /*Button 1 class for all buttons*/
+.primary {
+      background-color: var(--secondary-dark-1);
+      color: white; /* Primary blue color */
+      border: 1px solid var(--secondary-dark-1); 
+      transition: color 1s ease;
+    }
+    .primary > svg{
+      transition: fill .3s ease;
+      fill: white;
+    }
+    .primary:hover svg{
+      fill: var(--secondary-dark-1);
+    }
+.primary:hover {
+      border-color: var(--secondary-dark-1);
+      color: var(--secondary-dark-1); /* Darker blue border on hover */
+      font-weight: bold;
+    }
+  .span-primary{
+      background-color: var(--secondary-dark-1);
+  }
+  .primary:hover > .span-primary{
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      transition: width 0.3s ease, height 0.2s ease; /* Smooth expansion on hover */
+    }
+  
+  .primary:not(hover) > .span-primary{
+      width: .0001px;
+      height: 100%;
+      background-color: white;
+      transition: width 0.2s ease,  height 0.3s ease; /* Smooth expansion on hover */
+    }
+  /*Button1Secondary*/
+  .secondary {
+    background-color: var(--primary-main-1);
+    color: white; 
+    border: 1px solid var(--primary-main-1);
+    transition: color 1s ease;
+  }
+  .secondary > svg{
+    transition: fill .3s ease;
+    fill: white;
+  }
+  .secondary:hover svg{
+    fill: var(--primary-main-1);
+  }
+  .secondary:hover {
+    color:var(--primary-main-1); /* Darker blue border on hover */
+
+  }
+  .span-secondary{
+    background-color: var(--primary-main-1);
+  }
+  .secondary:hover > .span-secondary{
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    transition: width 0.3s ease, height 0.2s ease; /* Smooth expansion on hover */
+  }
+  .secondary:not(hover) > .span-secondary{
+    width: 0.0001px;
+   height: 0.0001px;
+    background-color: white;
+    transition: width 0.2s ease,  height 0.3s ease; /* Smooth expansion on hover */
+  }
+ 
+/*Black*/
+.black {
+  background-color: black;
+  color: white; 
+  border: 1px solid white; 
+
+  transition: color 1s ease;
+}
+.black > svg{
+  transition: fill .3s ease;
+  fill: white;
+}
+.black:hover svg{
+  fill:black;
+}
+.black:hover {
+  color:black; /* Darker blue border on hover */
+
+}
+.span-black{
+  background-color: transparent;
+}
+.black:hover > .span-black{
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  transition: width 0.3s ease, height 0.2s ease; /* Smooth expansion on hover */
+}
+.black:not(hover) > .span-black{
+  width: 0.0001px;
+  height: 0.0001px;
+  background-color: white;
+  transition: width 0.2s ease,  height 0.3s ease; /* Smooth expansion on hover */
+}
+
+/*White*/
+.white {
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: white;
+  color: black; 
+  border: 1px solid black; 
+  transition: color 1s ease;
+}
+.white > svg{
+  transition: fill .3s ease;
+  fill: black;
+}
+.white:hover svg{
+  fill: white;
+}
+.white:hover {
+  color:white; /* Darker blue border on hover */
+  border: 1px solid black;
+}
+.span-white{
+  background-color: black;
+  border-radius: 6px;
+}
+.white:hover > .span-white{
+  width: 100%;
+  height: 100%;
+ border: 1px solid white;
+  background-color: black;
+  transition: width 0.3s ease, height 0.2s ease; /* Smooth expansion on hover */
+}
+.white:not(hover) > .span-white{
+  width: 0.0001px;
+  height: 0.0001px;
+
+  background-color: black;
+  transition: width 0.2s ease,  height 0.3s ease; /* Smooth expansion on hover */
+}
+

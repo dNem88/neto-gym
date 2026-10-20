@@ -1,0 +1,49 @@
+---
+import CardServices14 from "@/src/GOK_LIBRARY/cards/services/card-services-14.astro";
+import TitleTemplate10 from "../title-template-10.astro";
+import LayoutCards from "@/src/GOK_LIBRARY/layouts-sections/layout-cards.astro";
+import { WebsiteContent } from "../../contentLandingPage";
+
+const team = WebsiteContent.team;
+---
+
+<LayoutCards
+  classnameLayout={"layout-team-10"}
+  sx={{ paddingTop: "10rem" }}
+  sxTitle={{ paddingLeft: "1rem" }}
+>
+ <TitleTemplate10 title="Инструктури с богат опит" variant="light" animation="btt" slot="title" align="center"/>
+  <Fragment slot="cards">
+    {
+      team.map((x, idx) => (
+        <CardServices14
+          title={x.name}
+          imageUrl={x.avatarUrl}
+          profession={x.profession}
+        />
+      ))
+    }
+  </Fragment>
+
+</LayoutCards>
+
+<style>
+  :global(.layout-team-10) {
+    background-color: var(--secondary-dark-1);
+    padding-top: 10rem;
+  }
+  .highlight-word9 {
+    color: var(--secondary-main-1);
+    font-weight: 600;
+  }
+
+  @media screen and (min-width: 1200px) {
+    :global(.layout-team-10) {
+      flex-direction: row;
+      justify-content: flex-end;
+      padding-top: 10rem;
+    
+    }
+ 
+  }
+</style>

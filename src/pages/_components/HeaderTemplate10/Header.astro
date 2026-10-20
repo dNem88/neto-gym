@@ -1,0 +1,90 @@
+---
+import Logo from "@/src/components/Common/logo.astro";
+import DesktopNav from "./DesktopNav.astro";
+import MobileNav from "./MobileNav.astro";
+
+
+---
+
+<header class="header">
+  <Logo/>
+  <div class="links-container">
+      <DesktopNav/>
+      <MobileNav/>
+  </div>
+</header>
+
+<style>
+  /*Logo*/
+  .logo-container {
+    position: absolute;
+    left: auto;
+    right: 2rem;
+    width: 10rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  /*LG  Large Devices (Desktops, 1200px and up) */
+  @media screen and (min-width: 1200px) {
+    /* Styles for large devices */
+    .logo-container {
+      height: 4.5rem;
+      left: 5rem;
+      right: auto;
+     
+    }
+  }
+
+  /*HeaderContainer*/
+  .header {
+    position: fixed;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 3.5rem;
+    background-color: var(--secondary-dark-1);
+    border-top: none;
+    display: flex;
+    align-items: center;
+    z-index: 20;
+  }
+  /*LG  Large Devices (Desktops, 1200px and up) */
+  @media screen and (min-width: 1200px) {
+    /* Styles for large devices */
+    .header {
+      height: 4.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--secondary-dark-1);
+    }
+  }
+
+  /*NavigationContainer*/
+  .links-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+  /*LG  Large Devices (Desktops, 1200px and up) */
+  @media screen and (min-width: 1200px) {
+    /* Styles for large devices */
+    .links-container {
+      position: relative;
+      width: fit-content;
+      height: 4.5rem;
+      left: auto;
+      right: 5rem;
+    }
+  }
+
+ 
+</style>

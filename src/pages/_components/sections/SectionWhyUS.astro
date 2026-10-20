@@ -1,0 +1,108 @@
+---
+import LayoutSideBySide from "@/src/GOK_LIBRARY/layouts-sections/layout-side-by-side.astro";
+import ListItem from "@/src/components/Common/list-item.astro";
+import Label from "../label.astro";
+import TitleTemplate10 from "../title-template-10.astro";
+---
+
+<LayoutSideBySide
+  align="center"
+  classnameLayout="layout10whyus"
+  classnameLeft="left-container"
+>
+  <div class="content-container10" slot="left">
+    <Label label="С какво сме по-добри?"/>
+    <TitleTemplate10 title="Защо да изберете Neto Fitness?" variant="light"/>
+  
+    <p class={"body2 text10"}>
+      {
+        "Доверете се на професионализъм, индивидуален подход и истинска грижа за вашето здраве и физическа форма."
+      }
+    </p>
+
+    <div class="benefits-container10">
+      <ListItem textColor={'white'} iconStyle={{fill: 'var(--primary-main-1)', width: '36px', height: '36px'}}>
+        {"Персонализирани програми"}
+      </ListItem>
+      <ListItem textColor={'white'} iconStyle={{fill: 'var(--primary-main-1)', width: '36px', height: '36px'}}>
+        {"Опитни треньори"}
+      </ListItem>
+      <ListItem textColor={'white'} iconStyle={{fill: 'var(--primary-main-1)', width: '36px', height: '36px'}}>
+        {"Модерна фитнес зала"}
+      </ListItem>
+      <ListItem textColor={'white'} iconStyle={{fill: 'var(--primary-main-1)', width: '36px', height: '36px'}}>
+        {"Грижа за клиента"}
+      </ListItem>
+    </div>
+  </div>
+
+  <div class="picture-container" slot="right">
+    <img
+      src={"/template10/gym5.webp"}
+      loading="lazy"
+      alt="why choose dr Nikolov"
+      class="image"
+    />
+    <div class="color-container10" slot="absolute-figure"></div>
+    <div class="pattern-container10" slot="absolute-figure">
+        {Array.from({ length: 24 }).map(() => (
+    <span class="plus-icon"></span>
+  ))}
+</div>
+  </div>
+</LayoutSideBySide>
+
+<style>
+  /*WhyUsSection of LandingOPAge*/
+  :global(.layout10whyus) {
+    background-color: var(--secondary-dark-1);
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+  }
+  /*Picture*/
+  .picture-container {
+    position: relative;
+    width: min(100%, 650px);
+    aspect-ratio: 1 / 1;
+  }
+  .color-container10 {
+    position: absolute;
+    bottom: -25px;
+    right: -25px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: var(--primary-main-1);
+  }
+   .pattern-container10 {
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 50%;
+    height: 50%;
+    z-index: -1;
+   background-image: url('/template10/dots.svg');
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;
+  }
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .subheading {
+    color: var(--secondary-dark-1);
+    font-weight: 400;
+  }
+  .content-container10 {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 1rem;
+   
+  }
+  .text10{
+    color: white;
+  }
+</style>

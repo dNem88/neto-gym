@@ -1,0 +1,35 @@
+---
+import Button5 from "@/src/GOK_LIBRARY/buttons/button5.astro";
+
+---
+
+<section class="wrapper">
+ <h2 class={"h2"} slot="title" style={{textAlign: 'center'}}>
+      {"Запазете час с "}
+      <span class="highlight-word9">нашия екип</span>
+    
+   </h2>
+
+  <Button5
+    variant={"secondary"}
+    content={"Запазете час"}
+    href={"/kontakti"}
+  />
+</section>
+
+<style>
+  .wrapper {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+    justify-content: center;
+    padding: 10rem 1rem;
+    background-color: var(--gray-background);
+  }
+   .highlight-word9 {
+    color: var(--secondary-main-1);
+    font-weight: 600;
+  }
+</style>

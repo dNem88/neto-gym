@@ -1,0 +1,111 @@
+---
+import CardTestimonials9 from "@/src/GOK_LIBRARY/cards/testimonials/card-testimonials-9.astro";
+import LayoutCards from "@/src/GOK_LIBRARY/layouts-sections/layout-cards.astro";
+import { WebsiteContent } from "../../contentLandingPage";
+import TitleTemplate10 from "../title-template-10.astro";
+
+const testimonials = WebsiteContent.testimonials
+---
+
+<LayoutCards
+  sx={{ paddingTop: '10rem',
+    backgroundImage: 'url("/template10/gym3.webp")',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+
+
+   }}
+  sxTitle={{ paddingLeft: "1rem", justifyContent: "flex-start" }}
+>
+<TitleTemplate10 slot="title" title={"Какво казват нашите клиенти"} variant="light"/>
+ 
+
+  <Fragment slot="cards">
+    {
+      testimonials.map((x, idx) => (
+        <div class="testimonial-reveal" style={`transition-delay: ${idx * 0.15}s`}>
+          <CardTestimonials9
+            name={x.name}
+            age={x.age}
+            city={x.city}
+            avatarUrl={x.avatarUrl}
+            testimonial={x.testimonial}
+          />
+        </div>
+      ))
+    }
+  </Fragment>
+  <div class="testimonials10-filter" slot="decoration"></div>
+</LayoutCards>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.testimonial-reveal').forEach((el) => {
+    observer.observe(el);
+  });
+</script>
+
+<style>
+  /* Cards container */
+  :global(.cards-container-template10), 
+  :global([slot="cards"]) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem;
+    width: 100%;
+  }
+
+  /* Animation wrapper */
+  .testimonial-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+                opacity 0.8s ease-out;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  @media screen and (min-width: 768px) {
+    .testimonial-reveal {
+      width: 350px;
+    }
+  }
+
+  .testimonial-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .testimonial-reveal > :global(*) {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .highlight-word10 {
+    color: var(--secondary-main-1);
+    font-weight: 600;
+  }
+  .testimonials10-filter{
+     position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: linear-gradient(60deg, var(--secondary-dark-1) 40%, transparent 100%);
+  z-index: 0;
+  opacity: 0.97;
+  }
+</style>

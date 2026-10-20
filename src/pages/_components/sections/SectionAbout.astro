@@ -1,0 +1,97 @@
+---
+import TitleTemplate10 from "../title-template-10.astro";
+import LayoutSideBySide from "@/src/GOK_LIBRARY/layouts-sections/layout-side-by-side.astro";
+import Button1 from "@/src/GOK_LIBRARY/buttons/button1.astro";
+---
+
+<LayoutSideBySide
+  sx={{
+    backgroundImage: "url('/template10/section-bg.webp')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    
+  }}
+  align="center"
+>
+  <div class="picture-container10" slot="left">
+    <div class="color-container10"></div>
+    <img
+      class="image10"
+      aria-hidden="true"
+      loading="lazy"
+      decoding="async"
+      src="/template10/gym7.webp"
+      alt="екипът на NetoGym"
+    />
+  </div>
+
+  <div class="text-container10" slot="right">
+    <TitleTemplate10
+      title={"Запознайте се с екипа на NetoGym"}
+      variant="light"
+    />
+
+    <p class="body1" style={{ color: "white" }}>
+      В NetoGym работим с квалифицирани треньори, които са посветени на това да ви помогнат да постигнете вашите фитнес цели. Независимо дали искате да подобрите формата си, да увеличите силата си или да отслабнете, нашият екип ще ви насочи с професионален и индивидуален подход.
+    </p>
+
+   
+
+    <Button1
+      variant="secondary"
+      href={"/template10/za-nas"}
+      content={"НАШИЯТ ЕКИП"}
+      sx={{ width: "300px" }}
+    />
+  </div>
+  <div class="filter-bg" slot="absolute-figure"></div>
+<style>
+/* Picture */
+.picture-container10 {
+  position: relative;
+  width: min(100%, 700px);
+  aspect-ratio: 1 / 1;
+}
+
+.color-container10 {
+  position: absolute;
+  bottom: -30px;
+  left: -30px;
+  width: min(100%, 700px);
+  aspect-ratio: 1 / 1;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    var(--primary-main-1) 50%,
+    var(--primary-dark-1) 130%
+  );
+}
+
+.image10 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Text Container */
+.text-container10 {
+  width: min(100%, 650px);
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 2rem;
+}
+.filter-bg{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: linear-gradient(60deg, var(--secondary-dark-1) 30%, transparent 100%);
+  z-index: 0;
+  opacity: 0.95;
+}
+</style>

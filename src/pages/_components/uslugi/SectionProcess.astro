@@ -1,0 +1,49 @@
+---
+import { WebsiteContent } from "../../contentLandingPage";
+import CardServices17 from "@/src/GOK_LIBRARY/cards/services/card-services-17.astro";
+import LayoutCards from "@/src/GOK_LIBRARY/layouts-sections/layout-cards.astro";
+import Title6 from "@/src/GOK_LIBRARY/titles/title6.astro";
+import FamilyIcon from "@/src/GOK_LIBRARY/icons/family-icon.astro";
+const servicesData = WebsiteContent.benefits;
+---
+
+<LayoutCards classnameLayout="template1-layout-benefits">
+  <Title6 slot="title" title="Нашият оптимизиран процес" />
+
+  <Fragment slot="cards">
+    {
+      servicesData.map((service, idx) => {
+        /*Create a component that can be mapped in the SLOT with name='icon'*/
+
+        return (
+          <CardServices17
+            title={service.title}
+            content={service.content}
+            href={service.href}
+            num={`0${Number(idx)+1}`}
+            icon={FamilyIcon}
+          ></CardServices17>
+        );
+      })
+    }
+  </Fragment>
+</LayoutCards>
+
+<style>
+  :global(.template1-layout-benefits) {
+    background: var(--gray-background);
+    padding-top: 5rem;
+   padding-bottom: 10rem;
+    display: flex;
+   
+  }
+
+  @media screen and (min-width: 1200px) {
+    
+    .cards-container {
+      width: min(100%, 1050px); /*3 x 320px + 2 x 32px*/
+    }
+  }
+ 
+ 
+</style>

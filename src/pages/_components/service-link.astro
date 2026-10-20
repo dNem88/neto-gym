@@ -1,0 +1,30 @@
+---
+const { href, label } = Astro.props;
+---
+
+<div class='aside-service-container'>
+  <a href={href} class="aside-service-text">
+    {label?.toUpperCase()}
+  </a>
+</div>
+
+<style>
+  .aside-service-container {
+    width: 100%;
+    display: flex;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    background-color: var(--primary-main-1);
+    align-items: center;
+    justify-content: center;
+  }
+  .aside-service-text {
+    font-weight: 700;
+    color: black;
+  
+  }
+  .aside-service-text:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--secondary-dark-1);
+  }
+</style>

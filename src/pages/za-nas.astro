@@ -1,0 +1,34 @@
+---
+import LayoutMain from "@/src/layouts/LayoutMain.astro";
+import Header from "./_components/HeaderTemplate10/Header.astro";
+import InnerPagesHeroSection from './_components/sections/InnerPagesHeroSection.astro'
+import TeamSection from "./_components/za-nas/TeamSection.astro";
+import AboutSection from "./_components/za-nas/AboutSection.astro";
+---
+
+<LayoutMain color="gym1">
+  <Header slot="header" />
+  <Fragment slot="main"> 
+    <InnerPagesHeroSection
+        title="За нас"
+        breadcrumb="начало | за нас"
+    />
+        <AboutSection
+            title="Консултантска къща AGR"
+        />
+        <TeamSection/>
+  </Fragment>
+</LayoutMain>
+
+<style>
+  :global(.gym1) {
+    --primary-dark-1: #9a9500;
+    --primary-main-1: #C7D300;
+    --primary-light-1: #e5e990;
+    --primary-lighter-1: #f9fae4;
+    --secondary-dark-1: #0A0A0A;
+    --secondary-main-1: #2c2c2c;
+    --secondary-light-1: #cacaca;
+    --secondary-lighter-1: #f6f6f6;
+  }
+</style>

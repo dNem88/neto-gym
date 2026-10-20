@@ -1,0 +1,100 @@
+---
+import LogoGallery from "../logo-gallery.astro";
+const GalleryImages = [
+  { src: "/template10/gym1.webp", alt: "Галерея 1" },
+  { src: "/template10/gym2.webp", alt: "Галерея 2" },
+  { src: "/template10/gym3.webp", alt: "Галерея 3" },
+  { src: "/template10/gym6.webp", alt: "Галерея 2" },
+  { src: "/template10/gym5.webp", alt: "Галерея 3" },
+];
+---
+
+<Fragment>
+  <section class="gallery10-layout">
+    <LogoGallery/><LogoGallery/><LogoGallery/><LogoGallery/><LogoGallery/>
+  </section>
+
+  <section class="gallery-10-images-container">
+    {GalleryImages.map((image) => (
+      <img
+        src={image.src}
+        alt={image.alt}
+        class="gallery-image observe-fade" 
+        loading="lazy"
+      />
+    ))}
+  </section>
+</Fragment>
+
+<script>
+  // Wait for the DOM to be ready
+  const observerOptions = {
+    root: null,
+    threshold: 0.1, // Trigger when 10% of the image is visible
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        // Optional: stop observing once the animation is done
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Target all images with the specific class
+  const targets = document.querySelectorAll(".observe-fade");
+  targets.forEach((target) => observer.observe(target));
+</script>
+
+<style>
+  /* --- Existing Layout Styles --- */
+  .gallery10-layout {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: var(--primary-main-1);
+  }
+  .gallery-10-images-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    gap: 1rem;
+    background-color: var(--secondary-dark-1);
+  }
+  .gallery-image {
+    width: 95%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    
+    /* --- Animation State --- */
+    opacity: 0;
+    transform: translateY(20px); /* Subtle lift effect */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform;
+  }
+
+  /* --- Visible State triggered by JS --- */
+  .gallery-image.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media screen and (min-width: 1200px) {
+    .gallery-10-images-container {
+      padding: 0;
+      gap: 0;
+    }
+    .gallery-image {
+      width: 20%;
+      aspect-ratio: 16/9;
+    }
+  }
+</style>

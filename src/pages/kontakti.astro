@@ -1,0 +1,71 @@
+---
+import LayoutMain from "@/src/layouts/LayoutMain.astro";
+import Header from "./_components/HeaderTemplate10/Header.astro";
+import InnerPagesHeroSection from "./_components/sections/InnerPagesHeroSection.astro";
+import SectionContacts from "./_components/sections/SectionContacts.astro";
+---
+
+<LayoutMain color="gym1">
+  <Header slot="header" />
+  <Fragment slot="main">
+    <InnerPagesHeroSection title="Контакти" breadcrumb="начало | контакти" />
+    <!-- <div class="iframe-wrapper">
+      <div class="map-container">
+        <iframe
+          src={"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3464.2368580540074!2d27.939508199999995!3d43.216046999999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a45419b9970f8d%3A0xdc94783600edc602!2z0LYu0LouINCn0LDQudC60LDQn9GA0LjQvNC-0YDRgdC60LgsINC2LtC6LiDQp9Cw0LnQutCwIDQ00JMsIDkwMDUg0JLQsNGA0L3QsA!5e1!3m2!1sbg!2sbg!4v1748342555419!5m2!1sbg!2sbg"}
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowfullscreen="true"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="map-iframe"
+          title="Business Location"></iframe>
+      </div>
+    </div> -->
+
+    <SectionContacts />
+  </Fragment>
+</LayoutMain>
+
+<style>
+     :global(.gym1) {
+    --primary-dark-1: #9a9500;
+    --primary-main-1: #C7D300;
+    --primary-light-1: #e5e990;
+    --primary-lighter-1: #f9fae4;
+    --secondary-dark-1: #0A0A0A;
+    --secondary-main-1: #2c2c2c;
+    --secondary-light-1: #cacaca;
+    --secondary-lighter-1: #f6f6f6;
+  }
+ 
+}
+  .iframe-wrapper {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .maps-section {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 1rem;
+  }
+  .map-container {
+    width: min(100%, 1200px);
+    aspect-ratio: 1/1;
+  }
+  @media screen and (min-width: 1200px) {
+    .map-container {
+      width: min(100%, 1200px);
+      aspect-ratio: 2 / 0.75;
+    }
+  }
+</style>

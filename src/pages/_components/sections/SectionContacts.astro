@@ -1,0 +1,72 @@
+---
+import MailForm from "./MailForm";
+const mapsHref =
+  "https://www.google.com/maps/search/?api=1&query=Google&query_place_id=ChIJveFDSaeFqkAR93wcYRrZPDk";
+---
+
+<section
+  class="layout-contacts10"
+  style={{
+    background: "var(--secondary-dark-1)",
+  }}
+>
+    <div class="contacts-info-container10">
+        <h2 class="contacts-title h5">ЗА КОНТАКТИ</h2>
+         <p class="contact-text body1">{"гр.София, жк Младост 3, ул Андрей Ляпчев 14"}</p>
+          <p class="contact-text body1">{"тел. 0888 123 456"}</p>
+         <p class="contact-text body1">{"e-mail: info@company.com"}</p>
+
+         <h2 class="contacts-title h5">РАБОТНО ВРЕМЕ</h2>
+          <p class="contact-text body1">Понеделник - Петък: 9:00 - 18:00</p>
+          <p class="contact-text body1">Събота: 10:00 - 14:00</p>
+          <p class="contact-text body1">Неделя: Почивен ден</p>
+    </div>
+    <MailForm client:visible />
+  </div>
+  
+</section>
+
+<style>
+  .layout-contacts10 {
+    position: relative;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 1rem;
+  }
+  .contacts-info-container10{
+    display: flex;
+    width: min(100%, 600px);
+    
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .contacts-title{
+    color: white;
+    font-weight: 800;
+    letter-spacing: -2px;
+    font-size: 1.5rem;
+  }
+  .contact-text{
+    color: rgb(207, 207, 207);
+  }
+  /* MD Medium Devices (Tablets, 900px and up) */
+  @media screen and (min-width: 900px) {
+
+  }
+
+  @media screen and (min-width: 1200px) {
+       .layout-contacts10 {
+        flex-direction: row;
+        gap: 5rem;
+  }
+  .contacts-title{
+  
+    font-size: 3rem;
+  }
+</style>

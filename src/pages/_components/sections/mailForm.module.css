@@ -1,0 +1,98 @@
+
+/*MailForm*/
+.form{
+    box-sizing: border-box;
+     width: min(100%, 650px);
+     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    /* background: white; */
+    padding: 3rem 1.5rem; 
+    gap: 20px;
+    background-color: var(--secondary-dark-1);
+    color: white;
+  
+}
+@media screen and (min-width: 850px) {
+    .form{
+        padding: 3rem; 
+    }
+}
+.inputs-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 0;
+    padding-bottom: .2rem;
+}
+.label {
+    color: white;
+    font-weight: 500;
+    position: relative;
+    padding-left: 12px;
+}
+.input{
+    border: none;
+    height: 4rem;
+    padding: 1rem;
+   border: 1px solid var(--secondary-main-1);
+    align-items: flex-start;
+    background: var(--secondary-dark-1);
+}
+.textarea{
+    border: none;;
+    height: 5rem;
+    padding: 1rem;
+    align-items: flex-start;
+   border: 1px solid var(--secondary-main-1);
+    background: var(--secondary-dark-1);
+}
+/*Animated Message Box*/
+.circle-icon-container{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    top: -40px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background: var(--primary-main-1);
+    z-index: 10;
+}
+.check-icon{
+    width: 76px;
+    height: 76px;
+    fill: white;
+}
+.message-box{
+    position: relative;
+   width: 350px;
+   height: fit-content;
+   box-shadow: 2px 2px 8px rgba(122, 122, 122, 0.2);
+   border-radius: 36px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding:3rem 1.5rem;
+   background-color: white;
+}
+.message-text{
+    color: white;
+}
+.error-message{
+    width: 350px;
+    color: white;
+    padding: 10px 1rem;
+    border-radius: 14px;
+    background-color: rgb(233, 158, 158);
+}
+@media screen and (min-width: 1200px){
+    .form{
+        padding: 6rem;
+    }
+}

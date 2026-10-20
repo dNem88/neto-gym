@@ -1,0 +1,144 @@
+.category-container-1 {
+  width: min(100%, 1200px);
+  display: flex;
+  align-items: center;
+ 
+  flex-direction: row;
+  gap: 1rem;
+  padding: 2rem 1rem;
+  ;
+  overflow-x: scroll;
+} 
+@media screen and (min-width: 650px) {
+  .category-container-1 {
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+}
+.category-label-1{
+  width: fit-content;
+  padding: 10px 20px;
+  border-radius: 24px;
+  border: 1px solid white;
+  background-color: white;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.category-label-1:hover {
+  background-color: var(--secondary-main-1);
+  border: 1px solid var(--secondary-main-1);
+  color: white;
+  scale: 1.025;
+}
+/*CategorySelector*/
+
+.category-container{
+    width: 100vw;
+    height: 8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    
+}
+
+.category-label{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary-dark-1);
+    font-weight: bold;
+}
+
+/* General select styling */
+.select {
+    width: min(100%, 250px);
+    color:  var(--secondary-dark-1);
+    border: 1px solid rgb(221, 221, 221);
+    padding: 10px 1rem;
+    background-color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  /* Custom styling for the dropdown options */
+ .option {
+    border: 1px solid var(--secondary-main-1);
+    padding: 10px;
+    background-color: var(--secondary-main-1);
+    color: white;
+    font-weight: bold;
+    height: 2rem;
+    cursor: pointer;
+  }
+  
+
+  
+  /* Focus (when the .select menu is focused) */
+  .select:focus {
+    outline: none;
+    border: 1px solid var(--secondary-main-1);
+    box-shadow: 0 0 5px var(--secondary-lighter-1);
+  }
+  
+  /* Disabled .select style */
+  .select:disabled {
+    background-color: #f0f0f0;
+    color: #999;
+  }
+
+
+  /*Pagination*/
+  .pagination{
+    width: min(100%, 350px);
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    ;
+   
+  }
+
+
+  .pagination-page-number{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 4px rgb(160, 160, 160);
+    text-align: center;
+    cursor: pointer;
+  }
+  .pagination-page-number:hover{
+    background-color: black;
+    color: white;
+    .arrow-icon{
+      background-color: black;
+      fill: white;
+    }
+  }
+  .arrow-icon{
+    background-color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+      width: 24px;
+      height: 24px;
+      fill: rgba(128, 128, 128, 0.548);
+      border: none;
+  }

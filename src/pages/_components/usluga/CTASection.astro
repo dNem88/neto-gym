@@ -1,0 +1,44 @@
+---
+import Button1 from "@/src/GOK_LIBRARY/buttons/button1.astro"
+---
+
+<section class="wrapper">
+
+  <h3 class="title h5">Запазете си тренировка с треньор!</h3>
+  <Button1
+    variant={"secondary"}
+    content={"Запазете консултация"}
+    sx={{color: 'black'}}
+    href={"/kontakti"}
+  />
+</section>
+
+<style>
+ .wrapper{
+    width: 100%;
+    display: flex;
+    border-radius: 1rem;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 1rem;
+    background-color: var(--secondary-main-1);
+    gap: 4rem;
+}
+.title{
+    text-align: center;
+    width: min(100%, 600px);
+    color: white !important;
+}
+@media screen and (min-width: 1200px){
+    .wrapper{
+        justify-content: space-between;
+        padding: 2rem;
+    }
+    .title{
+        text-align: center !important;
+    }
+    
+}
+</style>

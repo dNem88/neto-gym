@@ -1,0 +1,26 @@
+---
+import { Image } from "astro:assets";
+
+---
+
+<div class="logo-container">
+  <Image
+    src={'/logo.webp'}
+    loading="eager"
+    alt="лого-gok-studio"
+    width={130}
+    height={86}
+  />
+</div>
+
+<style>
+  /* No need for complex selectors, just target the class */
+  .logo-container {
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+</style>

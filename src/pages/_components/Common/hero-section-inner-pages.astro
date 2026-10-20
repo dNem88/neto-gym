@@ -1,0 +1,66 @@
+---
+const { title, breadcrumb } = Astro.props;
+---
+
+<div class="section-wrapper">
+  <section class="hero">
+    <div class="text-container">
+      <h1 class="h2 title">{title}</h1>
+      <p class="body1 breadcrumb">{breadcrumb}</p>
+    </div>
+  </section>
+</div>
+
+
+
+<style>
+  .section-wrapper {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 6rem;
+    padding-bottom: 5rem;
+  }
+ 
+  
+
+  /*HERO SECTION*/
+.hero{
+    width: min(90%, 1200px);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 2rem;
+    gap: 1rem;
+    background: linear-gradient(135deg, #E0FFF8 11%, #F3DFFF 41%, #D0FDFF 72%, #D0FAFF 100%);
+    align-items: center;
+    justify-content: space-evenly;
+}
+@media screen and (min-width: 1200px) {
+    .hero{
+        border-radius: 36px;
+        padding: 5rem 5rem;
+        background: linear-gradient(90deg, #E0FFF8 11%, #F3DFFF 41%, #D0FDFF 72%, #D0FAFF 100%);
+    }
+}
+
+  .text-container {
+    width: min(90%, 1200px);
+    height: 100%;
+  }
+
+  .title {
+    font-weight: 700;
+    color: black !important;
+    padding-bottom: 2rem;
+    z-index: 10;
+    text-align: center;
+  }
+  .breadcrumb {
+    color: black !important;
+    z-index: 10;
+    text-align: center;
+  }
+</style>

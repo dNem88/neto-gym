@@ -1,0 +1,39 @@
+---
+import LayoutMain from "@/src/layouts/LayoutMain.astro";
+import Header from "./_components/HeaderTemplate10/Header.astro";
+import HeroSection from "./_components/sections/HeroSection.astro";
+import SectionServices from "./_components/sections/SectionServices.astro";
+import SectionWhyUS from "./_components/sections/SectionWhyUS.astro";
+import SectionAbout from "./_components/sections/SectionAbout.astro";
+
+import TestimonialsSection from "./_components/sections/TestimonialsSection.astro";
+
+import SectionContacts from "./_components/sections/SectionContacts.astro";
+import SectionGallery from "./_components/sections/SectionGallery.astro";
+---
+<!-- TO DO ANIMATIONS -->
+<LayoutMain color="gym1">
+  <Header slot="header" />
+  <Fragment slot="main">
+    <HeroSection />
+    <SectionWhyUS />
+    <TestimonialsSection />
+    <SectionServices />
+    <SectionAbout />
+    <SectionGallery/>
+    <SectionContacts />
+  </Fragment>
+</LayoutMain>
+
+<style>
+  :global(.gym1) {
+    --primary-dark-1: #9a9500;
+    --primary-main-1: #C7D300;
+    --primary-light-1: #e5e990;
+    --primary-lighter-1: #f9fae4;
+    --secondary-dark-1: #0A0A0A;
+    --secondary-main-1: #2c2c2c;
+    --secondary-light-1: #cacaca;
+    --secondary-lighter-1: #f6f6f6;
+  }
+</style>

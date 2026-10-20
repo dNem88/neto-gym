@@ -1,0 +1,110 @@
+---
+import LoadingContainerStat from "@/src/GOK_LIBRARY/animations/loading-container-stat.astro";
+let stats = [
+  {
+    label: "Години опит",
+    countTarget: 15,
+  },
+  {
+    label: "Доволни клиенти",
+    countTarget: 450,
+  },
+  {
+    label: "Консилтирани клиенти",
+    countTarget: 2200,
+  },
+];
+---
+
+<div class="stats-container-t4">
+  <div class="stat left-stat">
+    <LoadingContainerStat
+      countTarget={15}
+      style={{ color: "var(--primary-main-1)" }}
+    />
+    <p class="stat-text">{stats[0].label}</p>
+  </div>
+  <div class="stat middle-stat">
+    <LoadingContainerStat
+      countTarget={450}
+      style={{ color: "var(--primary-main-1)" }}
+    />
+    <p class="stat-text">{stats[1].label}</p>
+  </div>
+  <div class="stat right-stat">
+    <LoadingContainerStat
+      countTarget={2200}
+      style={{ color: "var(--primary-main-1)" }}
+    />
+    <p class="stat-text">{stats[2].label}</p>
+  </div>
+ 
+</div>
+
+<style>
+  .stats-container-t4 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 5rem 1rem;
+    background-color: var(--secondary-dark-1);
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+
+    background-image: url("/consultant5/stat-bg.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .stat{
+     width: min(100%, 330px);
+    padding: 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  .stat-text{
+    color: var(--primary-main-1);
+  }
+  @media screen and (min-width: 1200px) {
+    .stats-container-t4 {
+      flex-direction: row;
+      align-items: stretch;
+    }
+  }
+
+  .left-stat {
+    border-radius: 24px 24px 0 0;
+    border: 1px solid var(--primary-main-1);
+    background-color: transparent;
+  }
+
+  @media screen and (min-width: 1200px) {
+    .left-stat {
+      border-radius: 24px 0 0 24px;
+    }
+  }
+  .middle-stat {
+    background-color: transparent;
+    border: 1px solid var(--primary-main-1);
+  }
+
+  @media screen and (min-width: 1200px) {
+    .middle-stat {
+    }
+  }
+  .right-stat {
+    border-radius: 0 0 24px 24px;
+    background-color: transparent;
+    border: 1px solid var(--primary-main-1);
+  }
+
+  @media screen and (min-width: 1200px) {
+    .right-stat {
+      border-radius: 0 24px 24px 0;
+    }
+  }
+</style>
+

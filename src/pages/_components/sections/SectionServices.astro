@@ -1,0 +1,115 @@
+---
+import { WebsiteContent } from "../../contentLandingPage";
+import CardServices14 from "@/src/GOK_LIBRARY/cards/services/card-services-14.astro";
+import LayoutCards from "@/src/GOK_LIBRARY/layouts-sections/layout-cards.astro";
+import TitleTemplate10 from "../title-template-10.astro";
+const servicesData = WebsiteContent.services;
+---
+
+<LayoutCards
+  classnameLayout={'layout-template10-service'}
+  sx={{ backgroundColor: 'var(--secondary-dark-1)'}}
+  classnameCardsContainer="cards-container-template10"
+  sxTitle={{ paddingLeft: "1rem", textAlign: 'center' }}
+  sxContent={{ width: "100%", padding: "1rem" }}
+>
+   <TitleTemplate10 title="Персонализирани услуги" variant="light" animation="btt" slot="title"/>
+ 
+
+  <Fragment slot="cards">
+    {
+      servicesData.map((service, idx) => (
+        /* Use a standard div wrapper that Astro can style easily */
+        <div class="reveal-card" style={`transition-delay: ${idx * 0.1}s`}>
+          <CardServices14
+            title={service.service}
+            href={service.href}
+            content={service.content}
+            imageUrl={service.imageUrl}
+          />
+        </div>
+      ))
+    }
+  </Fragment>
+</LayoutCards>
+
+<script>
+  // This function runs on the client
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  // Observe every card wrapper individually
+  document.querySelectorAll('.reveal-card').forEach((card) => {
+    observer.observe(card);
+  });
+</script>
+
+
+<style>
+  /* 1. The Parent Container: Force children to match height */
+  :global(.cards-container-template10) {
+    display: flex;
+    flex-direction: column; /* Stacked on mobile */
+    align-items: stretch;    /* THIS is what makes them the same width/height */
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  /* 2. The Wrapper: Must also be a flex container to pass the "stretch" down */
+  .reveal-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: transform 0.7s cubic-bezier(0.17, 0.67, 0.83, 0.67), 
+                opacity 0.7s ease-out;
+    
+    display: flex;
+    width: 100%; /* Full width on mobile/tablet */
+  }
+
+  /* 3. The Component: Force the actual card to fill the wrapper's height */
+  .reveal-card > :global(*) {
+    flex: 1 1 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .reveal-card.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+   .highlight-word9 {
+  color: var(--secondary-main-1);
+  font-weight: 600;
+}
+  /* 4. Desktop & Tablet Grid Logic */
+  @media screen and (min-width: 768px) {
+    :global(.cards-container-template10) {
+      flex-direction: row; /* Side-by-side on tablet/desktop */
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .reveal-card {
+      /* Tablet: 2 columns */
+      width: calc(50% - 1rem); 
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    :global(.cards-container-template10) {
+      width: min(100%, 1200px) !important;
+    }
+
+    .reveal-card {
+      /* Desktop: 3 columns */
+      width: calc(33.333% - 1.5rem); 
+    }
+  }
+</style>

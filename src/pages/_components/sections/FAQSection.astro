@@ -1,0 +1,87 @@
+---
+import QuestionFaq2 from "@/src/GOK_LIBRARY/faq/question-faq-2.astro";
+import LayoutSideBySide from "@/src/GOK_LIBRARY/layouts-sections/layout-side-by-side.astro";
+import Button4 from "@/src/GOK_LIBRARY/buttons/button4.astro";
+import Title4 from "@/src/GOK_LIBRARY/titles/title4.astro";
+import { WebsiteContent } from "../../contentLandingPage";
+const faqData = WebsiteContent.faqData;
+---
+
+<LayoutSideBySide>
+  
+  <div class="content-section" slot="left">
+      <Title4
+        title={"Отговори на най-често задавани въпроси"} />
+      <p
+        class={"body2"}
+        style={{textAlign: 'center'}}
+      >{`Добре дошли в нашата секция с често задавани въпроси! Тук ще намерите отговори на някои от най-често срещаните въпроси, свързани с нашите услуги, процедури за записване на час, политики за отмяна и други важни теми.
+`}</p>
+      <p class={"body2"}>{`Не намирате отговор? Свържете се с нас!`}</p>
+      <Button4
+        variant={"primary"}
+        content={"Изпратете запитване"}
+        href={"/kontakti"}
+      />
+    </div>
+
+      
+    <section class="questions-container" slot="right">
+        {
+      faqData.map((item) => (
+        <QuestionFaq2
+          question={item.question}
+          answer={item.answer}
+          class="question-item"
+        />
+      ))
+    }
+  </section>
+</LayoutSideBySide>
+
+<style>
+    .content-section{
+    width: min(100%, 600px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+}
+  .questions-container {
+    width: min(100%, 650px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1rem;
+    justify-content: flex-start;
+    align-self: flex-start;
+  }
+  @media screen and (min-width: 1200px) {
+    /* Styles for large devices */
+    .questions-container {
+      flex-direction: column;
+    }
+  }
+
+  .image-container {
+    width: min(100%, 650px);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+  }
+
+  .image-faq {
+    z-index: 5;
+    border-radius: 32px;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+
+
+</style>

@@ -1,0 +1,98 @@
+---
+import InnerPagesHeroSection from './sections/InnerPagesHeroSection.astro';
+import ServiceLink from './service-link.astro';
+import { WebsiteContent } from '../contentLandingPage';
+import CTASection from './usluga/CTASection.astro';
+
+const services = WebsiteContent.services;
+
+const { title, breadcrumb } = Astro.props;
+---
+
+<InnerPagesHeroSection title={title} breadcrumb={breadcrumb} align="center"/>
+<section class="layout-single-service10">
+  <div class="content-section10">
+    <slot name="content" />
+  </div>
+  <aside class="aside-section10">
+    <div class="aside-wrapper10">
+      {
+        services.map((x) => {
+          return <ServiceLink label={x?.service} href={x?.href} />;
+        })
+      }
+    </div>
+    <CTASection />
+  </aside>
+</section>
+
+<style>
+  /*LayoutForSingleServicePlusASIDE*/
+  .layout-single-service10 {
+    background-color: var(--secondary-dark-1);
+    padding: 5rem 0;
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .content-section10 {
+    order: 1;
+    width: min(100%, 800px);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: white;
+  }
+  .aside-section10 {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min(100%, 400px);
+    padding: 1rem;
+    background-color: transparent;
+  }
+  @media screen and (min-width: 1200px) {
+    .layout-single-service10 {
+      flex-wrap: nowrap;
+    }
+    .content-section10 {
+      padding: 1rem 4rem;
+    }
+  }
+
+  /*AsideSection*/
+  .aside-wrapper10 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: var(--secondary-main-1);
+    border-radius: 24px;
+    padding: 2rem 1rem;
+    margin-bottom: 5rem;
+  }
+  .aside-service-container10 {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-main-1);
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .aside-service-text10 {
+    color: black;
+    font-weight: 500;
+  }
+  .aside-service-text:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--secondary-main-1);
+  }
+</style>

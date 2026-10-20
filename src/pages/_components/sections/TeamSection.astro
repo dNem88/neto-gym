@@ -1,0 +1,62 @@
+---
+import CardTeam7 from "@/src/GOK_LIBRARY/cards/team/card-team-7.astro";
+import LayoutCards from "@/src/GOK_LIBRARY/layouts-sections/layout-cards.astro";
+import { WebsiteContent } from "../../contentLandingPage";
+const team = WebsiteContent.team;
+---
+
+<LayoutCards
+  classnameLayout={"layout-team-9"}
+  sx={{ paddingTop: "10rem" }}
+  sxTitle={{ paddingLeft: "1rem" }}
+>
+  <h2 class={"h2"} slot="title" style={{textAlign: 'center'}}>
+    {"Екип от "}
+    <span class="highlight-word9">професионалисти</span>
+  </h2>
+  <Fragment slot="cards">
+    {
+      team.map((x, idx) => (
+        <CardTeam7
+          name={x.name}
+          avatarUrl={x.avatarUrl}
+          profession={x.profession}
+        />
+      ))
+    }
+  </Fragment>
+  <div slot="decoration" class="white-circle-container"></div>
+</LayoutCards>
+
+<style>
+  :global(.layout-team-9) {
+    background-color: white;
+    padding-top: 10rem;
+  }
+  .highlight-word9 {
+    color: var(--secondary-main-1);
+    font-weight: 600;
+  }
+
+  @media screen and (min-width: 1200px) {
+    :global(.layout-team-9) {
+      flex-direction: row;
+      justify-content: flex-end;
+      padding-top: 10rem;
+      background-image: url("/template10/bg-sphere.webp");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: right;
+    }
+    .white-circle-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-top-right-radius: 50%;
+      border-bottom-right-radius: 50%;
+      width: 80%;
+      height: 100%;
+      background: white;
+    }
+  }
+</style>

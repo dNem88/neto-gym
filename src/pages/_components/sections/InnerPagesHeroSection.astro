@@ -1,12 +1,15 @@
 ---
+import TitleTemplate10 from "../title-template-10.astro";
+
 const { title, breadcrumb } = Astro.props;
+
 ---
 
 <div class="main">
-  <section class="hero">
-        <div class="filter"></div>
+  <section class="hero10">
+      <div class="filter"></div>
       <div class="polygon"></div>
-      <h1 class="h2 title">{title}</h1>
+      <TitleTemplate10 title={title} variant="light" align="center"/>
       <p class="body1 breadcrumb">{breadcrumb}</p>
    
   </section>
@@ -19,7 +22,7 @@ const { title, breadcrumb } = Astro.props;
     align-items: center;
     flex-direction: column;
     padding-top: 3.5rem;
-    padding-bottom: 5rem;
+   
   }
   @media screen and (min-width: 1200px) {
     .main {
@@ -27,7 +30,7 @@ const { title, breadcrumb } = Astro.props;
     }
   }
 
-.hero{
+.hero10{
     position: relative;
     display: flex;
     padding:  5rem 1rem;
@@ -36,7 +39,7 @@ const { title, breadcrumb } = Astro.props;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-     background-image: url('/template6/team1.webp');
+     background-image: url('/template10/gym3.webp');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -44,7 +47,7 @@ const { title, breadcrumb } = Astro.props;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 @media screen and (min-width: 1200px){
-    .hero{
+    .hero10{
         /* padding: 4.5rem 20rem; */
     }
     
@@ -57,7 +60,8 @@ const { title, breadcrumb } = Astro.props;
     position: absolute;
     left: 0;
     top: 0;
-    background: color-mix(in srgb, var(--secondary-dark-1) 75%, transparent);
+    background: linear-gradient(45deg, var(--secondary-dark-1) 25%, transparent 120%);
+
 }
 .polygon{
     width: 100px;
@@ -68,7 +72,9 @@ const { title, breadcrumb } = Astro.props;
     top: 0;
     z-index: 10;
     clip-path: polygon(0% 0%, 100% 0%, 20% 100%, 0% 100%);
-    background: color-mix(in srgb, var(--primary-light-1) 35%, transparent);
+    background-image: url('/template10/dots.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 @media screen and (min-width: 1200px){
     .polygon{
